@@ -1,0 +1,1873 @@
+:K (k20 / K
+	:K (k1 / K
+		:C (c1 / top
+						:VAR (k1s1 / s		)
+	)
+		:C (c28 / now
+						:VAR (k1t1 / t		)
+	)
+		:C (c4 / official
+						:VAR (k1x1 / x		)
+	)
+		:K (k2 / K
+			:C (c72 / now
+								:VAR (k2t1 / t			)
+		)
+			:K (k3 / K
+				:C (c82 / now
+										:VAR (k3t1 / t				)
+			)
+				:C (c88 / anti-drug
+										:VAR (k3s3 / s				)
+			)
+				:C (c96 / now
+										:VAR k3t1				)
+			)
+				:C (c104 / budget
+										:VAR (k3x26 / x				)
+			)
+				:C (c79 / comment
+										:VAR (k3x19 / x				)
+			)
+				:C (c85 / request
+										:VAR (k3x20 / x				)
+			)
+				:C (c86 / aid
+										:VAR (k3x21 / x				)
+			)
+				:C (c89 / effort
+										:VAR (k3x22 / x				)
+			)
+				:C (c99 / release
+										:VAR (k3x23 / x				)
+			)
+				:K (k4 / K
+					:C (c127 / now
+												:VAR (k4t1 / t					)
+				)
+					:C (c115 / tie
+												:VAR (k4x30 / x					)
+				)
+					:K (k5 / K
+						:C (c152 / major
+														:VAR (k5s4 / s						)
+					)
+						:C (c171 / now
+														:VAR (k5t1 / t						)
+					)
+						:C (c161 / or
+							:K (k26 / K
+								:C (c162 / united
+																		:VAR (k26x45 / x								)
+							)
+								:C (c164 / states
+																		:VAR (k26x7 / x								)
+							)
+								:C (c163 / equality
+																		:VAR k26x45								)
+																		:VAR k26x7								)
+							)
+								:C (c165 / for
+																		:VAR k26x7								)
+																		:VAR (k5e12 / e								)
+							)
+						)
+							:K (k27 / K
+								:C (c166 / europe
+																		:VAR (k27x46 / x								)
+							)
+								:C (c167 / for
+																		:VAR k27x46								)
+																		:VAR k5e12								)
+							)
+																:VAR k27x46							)
+						)
+					)
+						:C (c150 / country
+														:VAR (k5x38 / x						)
+					)
+						:C (c153 / transit
+														:VAR (k5x42 / x						)
+					)
+						:C (c155 / route
+														:VAR (k5x41 / x						)
+					)
+						:C (c156 / cocaine
+														:VAR (k5x43 / x						)
+					)
+						:C (c159 / destine
+														:VAR k5e12						)
+					)
+						:C (c168 / be
+														:VAR (k5e13 / e						)
+					)
+						:C (c146 / south
+														:VAR (k5x39 / x						)
+					)
+						:C (c148 / american
+														:VAR (k5x40 / x						)
+					)
+						:C (c147 / under
+														:VAR k5x39						)
+														:VAR k5x38						)
+					)
+						:C (c149 / under
+														:VAR k5x40						)
+														:VAR k5x38						)
+					)
+						:C (c154 / of
+														:VAR k5x42						)
+														:VAR k5x41						)
+					)
+						:C (c157 / for
+														:VAR k5x43						)
+														:VAR k5x41						)
+					)
+						:C (c158 / equality
+														:VAR (k5x44 / x						)
+														:VAR k5x41						)
+					)
+						:C (c172 / temp_included
+														:VAR (k5t12 / t						)
+														:VAR k5e13						)
+					)
+						:C (c173 / equality
+														:VAR k5t1						)
+														:VAR k5t12						)
+					)
+						:C (c151 / topic
+														:VAR k5s4						)
+														:VAR k5x41						)
+					)
+						:C (c169 / agent
+														:VAR k5x38						)
+														:VAR k5e13						)
+					)
+						:C (c170 / patient
+														:VAR k5x41						)
+														:VAR k5e13						)
+					)
+						:C (c160 / patient
+														:VAR k5e12						)
+														:VAR k5x44						)
+					)
+												:VAR k5e12					)
+				)
+					:C (c132 / XX
+												:VAR (k4x35 / x					)
+				)
+					:C (c124 / sever
+												:VAR (k4e9 / e					)
+				)
+					:C (c134 / claim
+												:VAR (k4e10 / e					)
+				)
+					:C (c131 / XX
+												:VAR k4x35					)
+				)
+					:C (c108 / venezuela
+												:VAR (k4x2 / x					)
+				)
+					:C (c110 / president
+												:VAR (k4x28 / x					)
+				)
+					:C (c112 / hugo
+												:VAR (k4x29 / x					)
+				)
+					:C (c114 / chavez
+												:VAR (k4x27 / x					)
+				)
+					:C (c116 / u.s.
+												:VAR (k4x32 / x					)
+				)
+					:C (c118 / drug
+												:VAR (k4x33 / x					)
+				)
+					:C (c120 / enforcement
+												:VAR (k4x34 / x					)
+				)
+					:C (c122 / administration
+												:VAR (k4x31 / x					)
+				)
+					:C (c109 / of
+												:VAR k4x2					)
+												:VAR k4x27					)
+				)
+					:C (c111 / equality
+												:VAR k4x28					)
+												:VAR k4x27					)
+				)
+					:C (c113 / equality
+												:VAR k4x29					)
+												:VAR k4x27					)
+				)
+					:C (c117 / of
+												:VAR k4x32					)
+												:VAR k4x31					)
+				)
+					:C (c119 / of
+												:VAR k4x33					)
+												:VAR k4x31					)
+				)
+					:C (c121 / of
+												:VAR k4x34					)
+												:VAR k4x31					)
+				)
+					:C (c123 / with
+												:VAR k4x31					)
+												:VAR k4x30					)
+				)
+					:C (c128 / temp_included
+												:VAR (k4t10 / t					)
+												:VAR k4e9					)
+				)
+					:C (c129 / temp_before
+												:VAR k4t1					)
+												:VAR k4t10					)
+				)
+					:C (c133 / in
+												:VAR k4x35					)
+												:VAR k4e9					)
+				)
+					:C (c145 / for
+												:VAR k4e10					)
+												:VAR k4e9					)
+				)
+					:C (c125 / agent
+												:VAR k4x27					)
+												:VAR k4e9					)
+				)
+					:C (c126 / patient
+												:VAR k4x30					)
+												:VAR k4e9					)
+				)
+					:C (c135 / agent
+												:VAR k4x27					)
+												:VAR k4e10					)
+				)
+					:C (c136 / theme
+												:VAR (k4p3 / p							:C (c142 / now
+																:VAR (k4p3t1 / t							)
+						)
+							:C (c137 / agent
+																:VAR (k4p3x36 / x							)
+						)
+							:C (c140 / espionage
+																:VAR (k4p3x37 / x							)
+						)
+							:C (c138 / involve
+																:VAR (k4p3e11 / e							)
+						)
+							:C (c141 / in
+																:VAR (k4p3x37 / x							)
+																:VAR (k4p3e11 / e							)
+						)
+							:C (c143 / temp_included
+																:VAR (k4p3t11 / t							)
+																:VAR (k4p3e11 / e							)
+						)
+							:C (c144 / temp_before
+																:VAR (k4p3t1 / t							)
+																:VAR (k4p3t11 / t							)
+						)
+							:C (c139 / patient
+																:VAR (k4p3x36 / x							)
+																:VAR (k4p3e11 / e							)
+						)
+														:VAR (k4p3x37 / x						)
+					)
+												:VAR k4e10					)
+				)
+					:C (c130 / 2005
+												:VAR k4x35					)
+				)
+										:VAR k4x35				)
+			)
+				:C (c80 / come
+										:VAR (k3e7 / e				)
+			)
+				:C (c94 / eliminate
+										:VAR (k3e8 / e				)
+			)
+				:C (c100 / president
+										:VAR (k3x25 / x				)
+			)
+				:C (c102 / bush
+										:VAR (k3x24 / x				)
+			)
+				:C (c77 / maduro
+										:VAR (k3x9 / x				)
+			)
+				:C (c90 / venezuela
+										:VAR (k3x2 / x				)
+			)
+				:C (c101 / equality
+										:VAR k3x25				)
+										:VAR k3x24				)
+			)
+				:C (c103 / of
+										:VAR k3x26				)
+										:VAR k3x24				)
+			)
+				:C (c105 / of
+										:VAR k3x26				)
+										:VAR k3x23				)
+			)
+				:C (c106 / in
+										:VAR k3e8				)
+										:VAR k3x23				)
+			)
+				:C (c107 / after
+										:VAR k3x23				)
+										:VAR k3e7				)
+			)
+				:C (c78 / of
+										:VAR k3x19				)
+										:VAR k3x9				)
+			)
+				:C (c83 / temp_included
+										:VAR (k3t8 / t				)
+										:VAR k3e7				)
+			)
+				:C (c84 / equality
+										:VAR k3t1				)
+										:VAR k3t8				)
+			)
+				:C (c91 / in
+										:VAR k3x2				)
+										:VAR k3x22				)
+			)
+				:C (c92 / for
+										:VAR k3x22				)
+										:VAR k3x21				)
+			)
+				:C (c93 / for
+										:VAR k3x21				)
+										:VAR k3x20				)
+			)
+				:C (c97 / temp_included
+										:VAR (k3t9 / t				)
+										:VAR k3e8				)
+			)
+				:C (c98 / temp_before
+										:VAR k3t1				)
+										:VAR k3t9				)
+			)
+				:C (c81 / agent
+										:VAR k3x19				)
+										:VAR k3e7				)
+			)
+				:C (c87 / topic
+										:VAR k3s3				)
+										:VAR k3x22				)
+			)
+				:C (c95 / patient
+										:VAR k3x20				)
+										:VAR k3e8				)
+			)
+								:VAR k3x26			)
+								:VAR k3s3			)
+								:VAR k3e8			)
+		)
+			:C (c69 / say
+								:VAR (k2e3 / e			)
+		)
+			:C (c31 / foreign
+								:VAR (k2x10 / x			)
+		)
+			:C (c33 / minister
+								:VAR (k2x11 / x			)
+		)
+			:C (c35 / nicolas
+								:VAR (k2x12 / x			)
+		)
+			:C (c37 / maduro
+								:VAR (k2x9 / x			)
+		)
+			:C (c75 / tuesday
+								:VAR (k2x13 / x			)
+		)
+			:C (c32 / equality
+								:VAR k2x10			)
+								:VAR k2x9			)
+		)
+			:C (c34 / equality
+								:VAR k2x11			)
+								:VAR k2x9			)
+		)
+			:C (c36 / equality
+								:VAR k2x12			)
+								:VAR k2x9			)
+		)
+			:C (c73 / temp_included
+								:VAR (k2t4 / t			)
+								:VAR k2e3			)
+		)
+			:C (c74 / temp_before
+								:VAR k2t1			)
+								:VAR k2t4			)
+		)
+			:C (c76 / on
+								:VAR k2x13			)
+								:VAR k2e3			)
+		)
+			:C (c70 / agent
+								:VAR k2x9			)
+								:VAR k2e3			)
+		)
+			:C (c71 / theme
+								:VAR (k2p2 / p					:C (c40 / sovereign
+												:VAR (k2p2s2 / s					)
+				)
+					:C (c66 / now
+												:VAR (k2p2t1 / t					)
+				)
+					:C (c41 / nation
+												:VAR (k2p2x14 / x					)
+				)
+					:C (c63 / be
+												:VAR (k2p2e4 / e					)
+				)
+					:C (c38 / venezuela
+												:VAR (k2p2x2 / x					)
+				)
+					:C (c67 / temp_included
+												:VAR (k2p2t5 / t					)
+												:VAR (k2p2e4 / e					)
+				)
+					:C (c68 / equality
+												:VAR (k2p2t1 / t					)
+												:VAR (k2p2t5 / t					)
+				)
+					:C (c39 / topic
+												:VAR (k2p2s2 / s					)
+												:VAR (k2p2x14 / x					)
+				)
+					:C (c64 / agent
+												:VAR (k2p2x2 / x					)
+												:VAR (k2p2e4 / e					)
+				)
+					:C (c65 / patient
+												:VAR (k2p2x14 / x					)
+												:VAR (k2p2e4 / e					)
+				)
+					:C (c42 / not
+						:K (k23 / K
+							:C (c44 / whq
+								:K (k24 / K
+									:C (c45 / thing
+																				:VAR (k24x16 / x									)
+								)
+							)
+								:K (k25 / K
+									:C (c52 / now
+																				:VAR (k25t1 / t									)
+								)
+									:C (c60 / now
+																				:VAR k25t1									)
+								)
+									:C (c46 / male
+																				:VAR (k25x9 / x									)
+								)
+									:C (c50 / money
+																				:VAR (k25x17 / x									)
+								)
+									:C (c55 / devil
+																				:VAR (k25x18 / x									)
+								)
+									:C (c47 / describe
+																				:VAR (k25e5 / e									)
+								)
+									:C (c57 / need
+																				:VAR (k25e6 / e									)
+								)
+									:C (c51 / as
+																				:VAR k25x17									)
+																				:VAR k25e5									)
+								)
+									:C (c53 / temp_included
+																				:VAR (k25t6 / t									)
+																				:VAR k25e5									)
+								)
+									:C (c54 / temp_before
+																				:VAR k25t1									)
+																				:VAR k25t6									)
+								)
+									:C (c56 / from
+																				:VAR k25x18									)
+																				:VAR k25e5									)
+								)
+									:C (c61 / temp_included
+																				:VAR (k25t7 / t									)
+																				:VAR k25e6									)
+								)
+									:C (c62 / equality
+																				:VAR k25t1									)
+																				:VAR k25t7									)
+								)
+									:C (c48 / agent
+																				:VAR k25x9									)
+																				:VAR k25e5									)
+								)
+									:C (c49 / patient
+																				:VAR k24x16									)
+																				:VAR k25e5									)
+								)
+									:C (c59 / patient
+																				:VAR k24x16									)
+																				:VAR k25e6									)
+								)
+									:C (c58 / agent
+																				:VAR k25e6									)
+																				:VAR (k23x15 / x									)
+								)
+																		:VAR k25e6								)
+																		:VAR k25x17								)
+																		:VAR k25x18								)
+																		:VAR k25e5								)
+							)
+						)
+							:C (c43 / equality
+																:VAR k23x15							)
+																:VAR (k2p2x14 / x							)
+						)
+					)
+				)
+			)
+								:VAR k2e3			)
+		)
+	)
+		:C (c5 / say
+						:VAR (k1e1 / e		)
+	)
+		:C (c2 / venezuela
+						:VAR (k1x2 / x		)
+	)
+		:C (c29 / temp_included
+						:VAR (k1t2 / t		)
+						:VAR k1e1		)
+	)
+		:C (c3 / of
+						:VAR k1x2		)
+						:VAR k1x1		)
+	)
+		:C (c30 / equality
+						:VAR k1t1		)
+						:VAR k1t2		)
+	)
+		:C (c0 / topic
+						:VAR k1s1		)
+						:VAR k1x1		)
+	)
+		:C (c6 / agent
+						:VAR k1x1		)
+						:VAR k1e1		)
+	)
+		:C (c7 / theme
+						:VAR (k1p1 / p				:C (c8 / nec
+					:K (k21 / K
+						:C (c25 / now
+														:VAR (k21t1 / t						)
+					)
+						:C (c11 / country
+														:VAR (k21x3 / x						)
+					)
+						:C (c12 / drug
+														:VAR (k21x5 / x						)
+					)
+						:C (c14 / trafficking
+														:VAR (k21x4 / x						)
+					)
+						:C (c9 / male
+														:VAR (k21x1 / x						)
+					)
+						:C (c15 / fight
+														:VAR (k21e2 / e						)
+					)
+						:C (c10 / of
+														:VAR k21x1						)
+														:VAR k21x3						)
+					)
+						:C (c13 / in
+														:VAR k21x5						)
+														:VAR k21x4						)
+					)
+						:C (c26 / temp_included
+														:VAR (k21t3 / t						)
+														:VAR k21e2						)
+					)
+						:C (c27 / temp_before
+														:VAR k21t3						)
+														:VAR k21t1						)
+					)
+						:C (c16 / agent
+														:VAR k21x3						)
+														:VAR k21e2						)
+					)
+						:C (c17 / patient
+														:VAR k21x4						)
+														:VAR k21e2						)
+					)
+						:C (c18 / not
+							:K (k22 / K
+								:C (c19 / help
+																		:VAR (k22x6 / x								)
+							)
+								:C (c20 / united
+																		:VAR (k22x8 / x								)
+							)
+								:C (c22 / states
+																		:VAR (k22x7 / x								)
+							)
+								:C (c21 / equality
+																		:VAR k22x8								)
+																		:VAR k22x7								)
+							)
+								:C (c23 / of
+																		:VAR k22x7								)
+																		:VAR k22x6								)
+							)
+								:C (c24 / with
+																		:VAR k22x6								)
+																		:VAR k21e2								)
+							)
+																:VAR k22x7							)
+						)
+					)
+				)
+			)
+		)
+						:VAR k1e1		)
+	)
+)
+	:K (k2 / K
+		:C (c72 / now
+						:VAR k2t1		)
+	)
+		:K (k3 / K
+			:C (c82 / now
+								:VAR k3t1			)
+		)
+			:C (c88 / anti-drug
+								:VAR k3s3			)
+		)
+			:C (c96 / now
+								:VAR k3t1			)
+		)
+			:C (c104 / budget
+								:VAR k3x26			)
+		)
+			:C (c79 / comment
+								:VAR k3x19			)
+		)
+			:C (c85 / request
+								:VAR k3x20			)
+		)
+			:C (c86 / aid
+								:VAR k3x21			)
+		)
+			:C (c89 / effort
+								:VAR k3x22			)
+		)
+			:C (c99 / release
+								:VAR k3x23			)
+		)
+			:K (k4 / K
+				:C (c127 / now
+										:VAR k4t1				)
+			)
+				:C (c115 / tie
+										:VAR k4x30				)
+			)
+				:K (k5 / K
+					:C (c152 / major
+												:VAR k5s4					)
+				)
+					:C (c171 / now
+												:VAR k5t1					)
+				)
+					:C (c161 / or
+						:K (k26 / K
+							:C (c162 / united
+																:VAR k26x45							)
+						)
+							:C (c164 / states
+																:VAR k26x7							)
+						)
+							:C (c163 / equality
+																:VAR k26x45							)
+																:VAR k26x7							)
+						)
+							:C (c165 / for
+																:VAR k26x7							)
+																:VAR k5e12							)
+						)
+					)
+						:K (k27 / K
+							:C (c166 / europe
+																:VAR k27x46							)
+						)
+							:C (c167 / for
+																:VAR k27x46							)
+																:VAR k5e12							)
+						)
+														:VAR k27x46						)
+					)
+				)
+					:C (c150 / country
+												:VAR k5x38					)
+				)
+					:C (c153 / transit
+												:VAR k5x42					)
+				)
+					:C (c155 / route
+												:VAR k5x41					)
+				)
+					:C (c156 / cocaine
+												:VAR k5x43					)
+				)
+					:C (c159 / destine
+												:VAR k5e12					)
+				)
+					:C (c168 / be
+												:VAR k5e13					)
+				)
+					:C (c146 / south
+												:VAR k5x39					)
+				)
+					:C (c148 / american
+												:VAR k5x40					)
+				)
+					:C (c147 / under
+												:VAR k5x39					)
+												:VAR k5x38					)
+				)
+					:C (c149 / under
+												:VAR k5x40					)
+												:VAR k5x38					)
+				)
+					:C (c154 / of
+												:VAR k5x42					)
+												:VAR k5x41					)
+				)
+					:C (c157 / for
+												:VAR k5x43					)
+												:VAR k5x41					)
+				)
+					:C (c158 / equality
+												:VAR k5x44					)
+												:VAR k5x41					)
+				)
+					:C (c172 / temp_included
+												:VAR k5t12					)
+												:VAR k5e13					)
+				)
+					:C (c173 / equality
+												:VAR k5t1					)
+												:VAR k5t12					)
+				)
+					:C (c151 / topic
+												:VAR k5s4					)
+												:VAR k5x41					)
+				)
+					:C (c169 / agent
+												:VAR k5x38					)
+												:VAR k5e13					)
+				)
+					:C (c170 / patient
+												:VAR k5x41					)
+												:VAR k5e13					)
+				)
+					:C (c160 / patient
+												:VAR k5e12					)
+												:VAR k5x44					)
+				)
+										:VAR k5e12				)
+			)
+				:C (c132 / XX
+										:VAR k4x35				)
+			)
+				:C (c124 / sever
+										:VAR k4e9				)
+			)
+				:C (c134 / claim
+										:VAR k4e10				)
+			)
+				:C (c131 / XX
+										:VAR k4x35				)
+			)
+				:C (c108 / venezuela
+										:VAR k4x2				)
+			)
+				:C (c110 / president
+										:VAR k4x28				)
+			)
+				:C (c112 / hugo
+										:VAR k4x29				)
+			)
+				:C (c114 / chavez
+										:VAR k4x27				)
+			)
+				:C (c116 / u.s.
+										:VAR k4x32				)
+			)
+				:C (c118 / drug
+										:VAR k4x33				)
+			)
+				:C (c120 / enforcement
+										:VAR k4x34				)
+			)
+				:C (c122 / administration
+										:VAR k4x31				)
+			)
+				:C (c109 / of
+										:VAR k4x2				)
+										:VAR k4x27				)
+			)
+				:C (c111 / equality
+										:VAR k4x28				)
+										:VAR k4x27				)
+			)
+				:C (c113 / equality
+										:VAR k4x29				)
+										:VAR k4x27				)
+			)
+				:C (c117 / of
+										:VAR k4x32				)
+										:VAR k4x31				)
+			)
+				:C (c119 / of
+										:VAR k4x33				)
+										:VAR k4x31				)
+			)
+				:C (c121 / of
+										:VAR k4x34				)
+										:VAR k4x31				)
+			)
+				:C (c123 / with
+										:VAR k4x31				)
+										:VAR k4x30				)
+			)
+				:C (c128 / temp_included
+										:VAR k4t10				)
+										:VAR k4e9				)
+			)
+				:C (c129 / temp_before
+										:VAR k4t1				)
+										:VAR k4t10				)
+			)
+				:C (c133 / in
+										:VAR k4x35				)
+										:VAR k4e9				)
+			)
+				:C (c145 / for
+										:VAR k4e10				)
+										:VAR k4e9				)
+			)
+				:C (c125 / agent
+										:VAR k4x27				)
+										:VAR k4e9				)
+			)
+				:C (c126 / patient
+										:VAR k4x30				)
+										:VAR k4e9				)
+			)
+				:C (c135 / agent
+										:VAR k4x27				)
+										:VAR k4e10				)
+			)
+				:C (c136 / theme
+										:VAR k4p3						:C (c142 / now
+														:VAR (k4p3t1 / t						)
+					)
+						:C (c137 / agent
+														:VAR (k4p3x36 / x						)
+					)
+						:C (c140 / espionage
+														:VAR (k4p3x37 / x						)
+					)
+						:C (c138 / involve
+														:VAR (k4p3e11 / e						)
+					)
+						:C (c141 / in
+														:VAR (k4p3x37 / x						)
+														:VAR (k4p3e11 / e						)
+					)
+						:C (c143 / temp_included
+														:VAR (k4p3t11 / t						)
+														:VAR (k4p3e11 / e						)
+					)
+						:C (c144 / temp_before
+														:VAR (k4p3t1 / t						)
+														:VAR (k4p3t11 / t						)
+					)
+						:C (c139 / patient
+														:VAR (k4p3x36 / x						)
+														:VAR (k4p3e11 / e						)
+					)
+												:VAR (k4p3x37 / x					)
+				)
+										:VAR k4e10				)
+			)
+				:C (c130 / 2005
+										:VAR k4x35				)
+			)
+								:VAR k4x35			)
+		)
+			:C (c80 / come
+								:VAR k3e7			)
+		)
+			:C (c94 / eliminate
+								:VAR k3e8			)
+		)
+			:C (c100 / president
+								:VAR k3x25			)
+		)
+			:C (c102 / bush
+								:VAR k3x24			)
+		)
+			:C (c77 / maduro
+								:VAR k3x9			)
+		)
+			:C (c90 / venezuela
+								:VAR k3x2			)
+		)
+			:C (c101 / equality
+								:VAR k3x25			)
+								:VAR k3x24			)
+		)
+			:C (c103 / of
+								:VAR k3x26			)
+								:VAR k3x24			)
+		)
+			:C (c105 / of
+								:VAR k3x26			)
+								:VAR k3x23			)
+		)
+			:C (c106 / in
+								:VAR k3e8			)
+								:VAR k3x23			)
+		)
+			:C (c107 / after
+								:VAR k3x23			)
+								:VAR k3e7			)
+		)
+			:C (c78 / of
+								:VAR k3x19			)
+								:VAR k3x9			)
+		)
+			:C (c83 / temp_included
+								:VAR k3t8			)
+								:VAR k3e7			)
+		)
+			:C (c84 / equality
+								:VAR k3t1			)
+								:VAR k3t8			)
+		)
+			:C (c91 / in
+								:VAR k3x2			)
+								:VAR k3x22			)
+		)
+			:C (c92 / for
+								:VAR k3x22			)
+								:VAR k3x21			)
+		)
+			:C (c93 / for
+								:VAR k3x21			)
+								:VAR k3x20			)
+		)
+			:C (c97 / temp_included
+								:VAR k3t9			)
+								:VAR k3e8			)
+		)
+			:C (c98 / temp_before
+								:VAR k3t1			)
+								:VAR k3t9			)
+		)
+			:C (c81 / agent
+								:VAR k3x19			)
+								:VAR k3e7			)
+		)
+			:C (c87 / topic
+								:VAR k3s3			)
+								:VAR k3x22			)
+		)
+			:C (c95 / patient
+								:VAR k3x20			)
+								:VAR k3e8			)
+		)
+						:VAR k3x26		)
+						:VAR k3s3		)
+						:VAR k3e8		)
+	)
+		:C (c69 / say
+						:VAR k2e3		)
+	)
+		:C (c31 / foreign
+						:VAR k2x10		)
+	)
+		:C (c33 / minister
+						:VAR k2x11		)
+	)
+		:C (c35 / nicolas
+						:VAR k2x12		)
+	)
+		:C (c37 / maduro
+						:VAR k2x9		)
+	)
+		:C (c75 / tuesday
+						:VAR k2x13		)
+	)
+		:C (c32 / equality
+						:VAR k2x10		)
+						:VAR k2x9		)
+	)
+		:C (c34 / equality
+						:VAR k2x11		)
+						:VAR k2x9		)
+	)
+		:C (c36 / equality
+						:VAR k2x12		)
+						:VAR k2x9		)
+	)
+		:C (c73 / temp_included
+						:VAR k2t4		)
+						:VAR k2e3		)
+	)
+		:C (c74 / temp_before
+						:VAR k2t1		)
+						:VAR k2t4		)
+	)
+		:C (c76 / on
+						:VAR k2x13		)
+						:VAR k2e3		)
+	)
+		:C (c70 / agent
+						:VAR k2x9		)
+						:VAR k2e3		)
+	)
+		:C (c71 / theme
+						:VAR k2p2				:C (c40 / sovereign
+										:VAR (k2p2s2 / s				)
+			)
+				:C (c66 / now
+										:VAR (k2p2t1 / t				)
+			)
+				:C (c41 / nation
+										:VAR (k2p2x14 / x				)
+			)
+				:C (c63 / be
+										:VAR (k2p2e4 / e				)
+			)
+				:C (c38 / venezuela
+										:VAR (k2p2x2 / x				)
+			)
+				:C (c67 / temp_included
+										:VAR (k2p2t5 / t				)
+										:VAR (k2p2e4 / e				)
+			)
+				:C (c68 / equality
+										:VAR (k2p2t1 / t				)
+										:VAR (k2p2t5 / t				)
+			)
+				:C (c39 / topic
+										:VAR (k2p2s2 / s				)
+										:VAR (k2p2x14 / x				)
+			)
+				:C (c64 / agent
+										:VAR (k2p2x2 / x				)
+										:VAR (k2p2e4 / e				)
+			)
+				:C (c65 / patient
+										:VAR (k2p2x14 / x				)
+										:VAR (k2p2e4 / e				)
+			)
+				:C (c42 / not
+					:K (k23 / K
+						:C (c44 / whq
+							:K (k24 / K
+								:C (c45 / thing
+																		:VAR k24x16								)
+							)
+						)
+							:K (k25 / K
+								:C (c52 / now
+																		:VAR k25t1								)
+							)
+								:C (c60 / now
+																		:VAR k25t1								)
+							)
+								:C (c46 / male
+																		:VAR k25x9								)
+							)
+								:C (c50 / money
+																		:VAR k25x17								)
+							)
+								:C (c55 / devil
+																		:VAR k25x18								)
+							)
+								:C (c47 / describe
+																		:VAR k25e5								)
+							)
+								:C (c57 / need
+																		:VAR k25e6								)
+							)
+								:C (c51 / as
+																		:VAR k25x17								)
+																		:VAR k25e5								)
+							)
+								:C (c53 / temp_included
+																		:VAR k25t6								)
+																		:VAR k25e5								)
+							)
+								:C (c54 / temp_before
+																		:VAR k25t1								)
+																		:VAR k25t6								)
+							)
+								:C (c56 / from
+																		:VAR k25x18								)
+																		:VAR k25e5								)
+							)
+								:C (c61 / temp_included
+																		:VAR k25t7								)
+																		:VAR k25e6								)
+							)
+								:C (c62 / equality
+																		:VAR k25t1								)
+																		:VAR k25t7								)
+							)
+								:C (c48 / agent
+																		:VAR k25x9								)
+																		:VAR k25e5								)
+							)
+								:C (c49 / patient
+																		:VAR k24x16								)
+																		:VAR k25e5								)
+							)
+								:C (c59 / patient
+																		:VAR k24x16								)
+																		:VAR k25e6								)
+							)
+								:C (c58 / agent
+																		:VAR k25e6								)
+																		:VAR k23x15								)
+							)
+																:VAR k25e6							)
+																:VAR k25x17							)
+																:VAR k25x18							)
+																:VAR k25e5							)
+						)
+					)
+						:C (c43 / equality
+														:VAR k23x15						)
+														:VAR (k2p2x14 / x						)
+					)
+				)
+			)
+		)
+						:VAR k2e3		)
+	)
+)
+	:K (k3 / K
+		:C (c82 / now
+						:VAR k3t1		)
+	)
+		:C (c88 / anti-drug
+						:VAR k3s3		)
+	)
+		:C (c96 / now
+						:VAR k3t1		)
+	)
+		:C (c104 / budget
+						:VAR k3x26		)
+	)
+		:C (c79 / comment
+						:VAR k3x19		)
+	)
+		:C (c85 / request
+						:VAR k3x20		)
+	)
+		:C (c86 / aid
+						:VAR k3x21		)
+	)
+		:C (c89 / effort
+						:VAR k3x22		)
+	)
+		:C (c99 / release
+						:VAR k3x23		)
+	)
+		:K (k4 / K
+			:C (c127 / now
+								:VAR k4t1			)
+		)
+			:C (c115 / tie
+								:VAR k4x30			)
+		)
+			:K (k5 / K
+				:C (c152 / major
+										:VAR k5s4				)
+			)
+				:C (c171 / now
+										:VAR k5t1				)
+			)
+				:C (c161 / or
+					:K (k26 / K
+						:C (c162 / united
+														:VAR k26x45						)
+					)
+						:C (c164 / states
+														:VAR k26x7						)
+					)
+						:C (c163 / equality
+														:VAR k26x45						)
+														:VAR k26x7						)
+					)
+						:C (c165 / for
+														:VAR k26x7						)
+														:VAR k5e12						)
+					)
+				)
+					:K (k27 / K
+						:C (c166 / europe
+														:VAR k27x46						)
+					)
+						:C (c167 / for
+														:VAR k27x46						)
+														:VAR k5e12						)
+					)
+												:VAR k27x46					)
+				)
+			)
+				:C (c150 / country
+										:VAR k5x38				)
+			)
+				:C (c153 / transit
+										:VAR k5x42				)
+			)
+				:C (c155 / route
+										:VAR k5x41				)
+			)
+				:C (c156 / cocaine
+										:VAR k5x43				)
+			)
+				:C (c159 / destine
+										:VAR k5e12				)
+			)
+				:C (c168 / be
+										:VAR k5e13				)
+			)
+				:C (c146 / south
+										:VAR k5x39				)
+			)
+				:C (c148 / american
+										:VAR k5x40				)
+			)
+				:C (c147 / under
+										:VAR k5x39				)
+										:VAR k5x38				)
+			)
+				:C (c149 / under
+										:VAR k5x40				)
+										:VAR k5x38				)
+			)
+				:C (c154 / of
+										:VAR k5x42				)
+										:VAR k5x41				)
+			)
+				:C (c157 / for
+										:VAR k5x43				)
+										:VAR k5x41				)
+			)
+				:C (c158 / equality
+										:VAR k5x44				)
+										:VAR k5x41				)
+			)
+				:C (c172 / temp_included
+										:VAR k5t12				)
+										:VAR k5e13				)
+			)
+				:C (c173 / equality
+										:VAR k5t1				)
+										:VAR k5t12				)
+			)
+				:C (c151 / topic
+										:VAR k5s4				)
+										:VAR k5x41				)
+			)
+				:C (c169 / agent
+										:VAR k5x38				)
+										:VAR k5e13				)
+			)
+				:C (c170 / patient
+										:VAR k5x41				)
+										:VAR k5e13				)
+			)
+				:C (c160 / patient
+										:VAR k5e12				)
+										:VAR k5x44				)
+			)
+								:VAR k5e12			)
+		)
+			:C (c132 / XX
+								:VAR k4x35			)
+		)
+			:C (c124 / sever
+								:VAR k4e9			)
+		)
+			:C (c134 / claim
+								:VAR k4e10			)
+		)
+			:C (c131 / XX
+								:VAR k4x35			)
+		)
+			:C (c108 / venezuela
+								:VAR k4x2			)
+		)
+			:C (c110 / president
+								:VAR k4x28			)
+		)
+			:C (c112 / hugo
+								:VAR k4x29			)
+		)
+			:C (c114 / chavez
+								:VAR k4x27			)
+		)
+			:C (c116 / u.s.
+								:VAR k4x32			)
+		)
+			:C (c118 / drug
+								:VAR k4x33			)
+		)
+			:C (c120 / enforcement
+								:VAR k4x34			)
+		)
+			:C (c122 / administration
+								:VAR k4x31			)
+		)
+			:C (c109 / of
+								:VAR k4x2			)
+								:VAR k4x27			)
+		)
+			:C (c111 / equality
+								:VAR k4x28			)
+								:VAR k4x27			)
+		)
+			:C (c113 / equality
+								:VAR k4x29			)
+								:VAR k4x27			)
+		)
+			:C (c117 / of
+								:VAR k4x32			)
+								:VAR k4x31			)
+		)
+			:C (c119 / of
+								:VAR k4x33			)
+								:VAR k4x31			)
+		)
+			:C (c121 / of
+								:VAR k4x34			)
+								:VAR k4x31			)
+		)
+			:C (c123 / with
+								:VAR k4x31			)
+								:VAR k4x30			)
+		)
+			:C (c128 / temp_included
+								:VAR k4t10			)
+								:VAR k4e9			)
+		)
+			:C (c129 / temp_before
+								:VAR k4t1			)
+								:VAR k4t10			)
+		)
+			:C (c133 / in
+								:VAR k4x35			)
+								:VAR k4e9			)
+		)
+			:C (c145 / for
+								:VAR k4e10			)
+								:VAR k4e9			)
+		)
+			:C (c125 / agent
+								:VAR k4x27			)
+								:VAR k4e9			)
+		)
+			:C (c126 / patient
+								:VAR k4x30			)
+								:VAR k4e9			)
+		)
+			:C (c135 / agent
+								:VAR k4x27			)
+								:VAR k4e10			)
+		)
+			:C (c136 / theme
+								:VAR k4p3					:C (c142 / now
+												:VAR (k4p3t1 / t					)
+				)
+					:C (c137 / agent
+												:VAR (k4p3x36 / x					)
+				)
+					:C (c140 / espionage
+												:VAR (k4p3x37 / x					)
+				)
+					:C (c138 / involve
+												:VAR (k4p3e11 / e					)
+				)
+					:C (c141 / in
+												:VAR (k4p3x37 / x					)
+												:VAR (k4p3e11 / e					)
+				)
+					:C (c143 / temp_included
+												:VAR (k4p3t11 / t					)
+												:VAR (k4p3e11 / e					)
+				)
+					:C (c144 / temp_before
+												:VAR (k4p3t1 / t					)
+												:VAR (k4p3t11 / t					)
+				)
+					:C (c139 / patient
+												:VAR (k4p3x36 / x					)
+												:VAR (k4p3e11 / e					)
+				)
+										:VAR (k4p3x37 / x				)
+			)
+								:VAR k4e10			)
+		)
+			:C (c130 / 2005
+								:VAR k4x35			)
+		)
+						:VAR k4x35		)
+	)
+		:C (c80 / come
+						:VAR k3e7		)
+	)
+		:C (c94 / eliminate
+						:VAR k3e8		)
+	)
+		:C (c100 / president
+						:VAR k3x25		)
+	)
+		:C (c102 / bush
+						:VAR k3x24		)
+	)
+		:C (c77 / maduro
+						:VAR k3x9		)
+	)
+		:C (c90 / venezuela
+						:VAR k3x2		)
+	)
+		:C (c101 / equality
+						:VAR k3x25		)
+						:VAR k3x24		)
+	)
+		:C (c103 / of
+						:VAR k3x26		)
+						:VAR k3x24		)
+	)
+		:C (c105 / of
+						:VAR k3x26		)
+						:VAR k3x23		)
+	)
+		:C (c106 / in
+						:VAR k3e8		)
+						:VAR k3x23		)
+	)
+		:C (c107 / after
+						:VAR k3x23		)
+						:VAR k3e7		)
+	)
+		:C (c78 / of
+						:VAR k3x19		)
+						:VAR k3x9		)
+	)
+		:C (c83 / temp_included
+						:VAR k3t8		)
+						:VAR k3e7		)
+	)
+		:C (c84 / equality
+						:VAR k3t1		)
+						:VAR k3t8		)
+	)
+		:C (c91 / in
+						:VAR k3x2		)
+						:VAR k3x22		)
+	)
+		:C (c92 / for
+						:VAR k3x22		)
+						:VAR k3x21		)
+	)
+		:C (c93 / for
+						:VAR k3x21		)
+						:VAR k3x20		)
+	)
+		:C (c97 / temp_included
+						:VAR k3t9		)
+						:VAR k3e8		)
+	)
+		:C (c98 / temp_before
+						:VAR k3t1		)
+						:VAR k3t9		)
+	)
+		:C (c81 / agent
+						:VAR k3x19		)
+						:VAR k3e7		)
+	)
+		:C (c87 / topic
+						:VAR k3s3		)
+						:VAR k3x22		)
+	)
+		:C (c95 / patient
+						:VAR k3x20		)
+						:VAR k3e8		)
+	)
+				:VAR k3x26	)
+				:VAR k3s3	)
+				:VAR k3e8	)
+)
+	:K (k4 / K
+		:C (c127 / now
+						:VAR k4t1		)
+	)
+		:C (c115 / tie
+						:VAR k4x30		)
+	)
+		:K (k5 / K
+			:C (c152 / major
+								:VAR k5s4			)
+		)
+			:C (c171 / now
+								:VAR k5t1			)
+		)
+			:C (c161 / or
+				:K (k26 / K
+					:C (c162 / united
+												:VAR k26x45					)
+				)
+					:C (c164 / states
+												:VAR k26x7					)
+				)
+					:C (c163 / equality
+												:VAR k26x45					)
+												:VAR k26x7					)
+				)
+					:C (c165 / for
+												:VAR k26x7					)
+												:VAR k5e12					)
+				)
+			)
+				:K (k27 / K
+					:C (c166 / europe
+												:VAR k27x46					)
+				)
+					:C (c167 / for
+												:VAR k27x46					)
+												:VAR k5e12					)
+				)
+										:VAR k27x46				)
+			)
+		)
+			:C (c150 / country
+								:VAR k5x38			)
+		)
+			:C (c153 / transit
+								:VAR k5x42			)
+		)
+			:C (c155 / route
+								:VAR k5x41			)
+		)
+			:C (c156 / cocaine
+								:VAR k5x43			)
+		)
+			:C (c159 / destine
+								:VAR k5e12			)
+		)
+			:C (c168 / be
+								:VAR k5e13			)
+		)
+			:C (c146 / south
+								:VAR k5x39			)
+		)
+			:C (c148 / american
+								:VAR k5x40			)
+		)
+			:C (c147 / under
+								:VAR k5x39			)
+								:VAR k5x38			)
+		)
+			:C (c149 / under
+								:VAR k5x40			)
+								:VAR k5x38			)
+		)
+			:C (c154 / of
+								:VAR k5x42			)
+								:VAR k5x41			)
+		)
+			:C (c157 / for
+								:VAR k5x43			)
+								:VAR k5x41			)
+		)
+			:C (c158 / equality
+								:VAR k5x44			)
+								:VAR k5x41			)
+		)
+			:C (c172 / temp_included
+								:VAR k5t12			)
+								:VAR k5e13			)
+		)
+			:C (c173 / equality
+								:VAR k5t1			)
+								:VAR k5t12			)
+		)
+			:C (c151 / topic
+								:VAR k5s4			)
+								:VAR k5x41			)
+		)
+			:C (c169 / agent
+								:VAR k5x38			)
+								:VAR k5e13			)
+		)
+			:C (c170 / patient
+								:VAR k5x41			)
+								:VAR k5e13			)
+		)
+			:C (c160 / patient
+								:VAR k5e12			)
+								:VAR k5x44			)
+		)
+						:VAR k5e12		)
+	)
+		:C (c132 / XX
+						:VAR k4x35		)
+	)
+		:C (c124 / sever
+						:VAR k4e9		)
+	)
+		:C (c134 / claim
+						:VAR k4e10		)
+	)
+		:C (c131 / XX
+						:VAR k4x35		)
+	)
+		:C (c108 / venezuela
+						:VAR k4x2		)
+	)
+		:C (c110 / president
+						:VAR k4x28		)
+	)
+		:C (c112 / hugo
+						:VAR k4x29		)
+	)
+		:C (c114 / chavez
+						:VAR k4x27		)
+	)
+		:C (c116 / u.s.
+						:VAR k4x32		)
+	)
+		:C (c118 / drug
+						:VAR k4x33		)
+	)
+		:C (c120 / enforcement
+						:VAR k4x34		)
+	)
+		:C (c122 / administration
+						:VAR k4x31		)
+	)
+		:C (c109 / of
+						:VAR k4x2		)
+						:VAR k4x27		)
+	)
+		:C (c111 / equality
+						:VAR k4x28		)
+						:VAR k4x27		)
+	)
+		:C (c113 / equality
+						:VAR k4x29		)
+						:VAR k4x27		)
+	)
+		:C (c117 / of
+						:VAR k4x32		)
+						:VAR k4x31		)
+	)
+		:C (c119 / of
+						:VAR k4x33		)
+						:VAR k4x31		)
+	)
+		:C (c121 / of
+						:VAR k4x34		)
+						:VAR k4x31		)
+	)
+		:C (c123 / with
+						:VAR k4x31		)
+						:VAR k4x30		)
+	)
+		:C (c128 / temp_included
+						:VAR k4t10		)
+						:VAR k4e9		)
+	)
+		:C (c129 / temp_before
+						:VAR k4t1		)
+						:VAR k4t10		)
+	)
+		:C (c133 / in
+						:VAR k4x35		)
+						:VAR k4e9		)
+	)
+		:C (c145 / for
+						:VAR k4e10		)
+						:VAR k4e9		)
+	)
+		:C (c125 / agent
+						:VAR k4x27		)
+						:VAR k4e9		)
+	)
+		:C (c126 / patient
+						:VAR k4x30		)
+						:VAR k4e9		)
+	)
+		:C (c135 / agent
+						:VAR k4x27		)
+						:VAR k4e10		)
+	)
+		:C (c136 / theme
+						:VAR k4p3				:C (c142 / now
+										:VAR (k4p3t1 / t				)
+			)
+				:C (c137 / agent
+										:VAR (k4p3x36 / x				)
+			)
+				:C (c140 / espionage
+										:VAR (k4p3x37 / x				)
+			)
+				:C (c138 / involve
+										:VAR (k4p3e11 / e				)
+			)
+				:C (c141 / in
+										:VAR (k4p3x37 / x				)
+										:VAR (k4p3e11 / e				)
+			)
+				:C (c143 / temp_included
+										:VAR (k4p3t11 / t				)
+										:VAR (k4p3e11 / e				)
+			)
+				:C (c144 / temp_before
+										:VAR (k4p3t1 / t				)
+										:VAR (k4p3t11 / t				)
+			)
+				:C (c139 / patient
+										:VAR (k4p3x36 / x				)
+										:VAR (k4p3e11 / e				)
+			)
+								:VAR (k4p3x37 / x			)
+		)
+						:VAR k4e10		)
+	)
+		:C (c130 / 2005
+						:VAR k4x35		)
+	)
+				:VAR k4x35	)
+)
+	:K (k5 / K
+		:C (c152 / major
+						:VAR k5s4		)
+	)
+		:C (c171 / now
+						:VAR k5t1		)
+	)
+		:C (c161 / or
+			:K (k26 / K
+				:C (c162 / united
+										:VAR k26x45				)
+			)
+				:C (c164 / states
+										:VAR k26x7				)
+			)
+				:C (c163 / equality
+										:VAR k26x45				)
+										:VAR k26x7				)
+			)
+				:C (c165 / for
+										:VAR k26x7				)
+										:VAR k5e12				)
+			)
+		)
+			:K (k27 / K
+				:C (c166 / europe
+										:VAR k27x46				)
+			)
+				:C (c167 / for
+										:VAR k27x46				)
+										:VAR k5e12				)
+			)
+								:VAR k27x46			)
+		)
+	)
+		:C (c150 / country
+						:VAR k5x38		)
+	)
+		:C (c153 / transit
+						:VAR k5x42		)
+	)
+		:C (c155 / route
+						:VAR k5x41		)
+	)
+		:C (c156 / cocaine
+						:VAR k5x43		)
+	)
+		:C (c159 / destine
+						:VAR k5e12		)
+	)
+		:C (c168 / be
+						:VAR k5e13		)
+	)
+		:C (c146 / south
+						:VAR k5x39		)
+	)
+		:C (c148 / american
+						:VAR k5x40		)
+	)
+		:C (c147 / under
+						:VAR k5x39		)
+						:VAR k5x38		)
+	)
+		:C (c149 / under
+						:VAR k5x40		)
+						:VAR k5x38		)
+	)
+		:C (c154 / of
+						:VAR k5x42		)
+						:VAR k5x41		)
+	)
+		:C (c157 / for
+						:VAR k5x43		)
+						:VAR k5x41		)
+	)
+		:C (c158 / equality
+						:VAR k5x44		)
+						:VAR k5x41		)
+	)
+		:C (c172 / temp_included
+						:VAR k5t12		)
+						:VAR k5e13		)
+	)
+		:C (c173 / equality
+						:VAR k5t1		)
+						:VAR k5t12		)
+	)
+		:C (c151 / topic
+						:VAR k5s4		)
+						:VAR k5x41		)
+	)
+		:C (c169 / agent
+						:VAR k5x38		)
+						:VAR k5e13		)
+	)
+		:C (c170 / patient
+						:VAR k5x41		)
+						:VAR k5e13		)
+	)
+		:C (c160 / patient
+						:VAR k5e12		)
+						:VAR k5x44		)
+	)
+				:VAR k5e12	)
+)
