@@ -26,19 +26,27 @@ public class Constituent extends DRTElement{
      * @return
      */
     public int assign2Sentence(){
+        int res = 0;
         TreeSet<String> getIndicesConstituent = this.getIndicesYield(new TreeSet<>());
         if (getIndicesConstituent.isEmpty()){
-            return -1;
+            res = -1;
         }
-//        TODO: find the max indices and assign the constituent there
         HashMap<Integer,Integer> counts = new HashMap<>();
         for (String tokStr: getIndicesConstituent){
             int tokIdx = Integer.parseInt(tokStr.substring(1,2));
             counts.putIfAbsent(tokIdx,0);
             counts.put(tokIdx,counts.get(tokIdx)+1);
         }
-        int max = Collections.max(counts.entrySet(), (entry1,entry2) -> entry1.getValue() - entry2.getValue()).getKey();
-        return max;
+//        int max = Collections.max(counts.entrySet(), (entry1,entry2) -> entry1.getValue() - entry2.getValue()).getKey();
+        if (counts.keySet().size()>1){
+            res = -2;
+        } else {
+            for (int i: counts.keySet()){
+                res = i;
+                break;
+            }
+        }
+        return res;
     }
 
     @Override

@@ -26,8 +26,10 @@ public class DRTSegmenter {
         for (Constituent constituent: constituents){
 //            TODO: if we want to be more strict make sure that the entire constituent is on one sentence and one sentence only.
             int sentIdx = constituent.assign2Sentence();
-            constituent2sents.putIfAbsent(sentIdx,new ArrayList<>());
-            constituent2sents.get(sentIdx).add(constituent);
+            if (sentIdx!=-2) {
+                constituent2sents.putIfAbsent(sentIdx, new ArrayList<>());
+                constituent2sents.get(sentIdx).add(constituent);
+            }
         }
         return constituent2sents;
     }
@@ -82,11 +84,11 @@ public class DRTSegmenter {
                 String relConst1 = rel.getChildTags().get(0);
                 String relConst2 = rel.getChildTags().get(1);
                 for (Constituent unassignedConst: unassingedConsts){
-                    if (unassignedConst.getLabel().equals(relConst1)){
+                    if (unassignedConst.getLabel().equals(relConst1) && invertedConsts.containsKey(relConst2)){
                         int sentIdx = invertedConsts.get(relConst2);
                         consts.get(sentIdx).add(unassignedConst);
                     }
-                    if (unassignedConst.getLabel().equals(relConst2)){
+                    if (unassignedConst.getLabel().equals(relConst2) && invertedConsts.containsKey(relConst1)){
                         int sentIdx = invertedConsts.get(relConst1);
                         consts.get(sentIdx).add(unassignedConst);
                     }
@@ -174,7 +176,7 @@ public class DRTSegmenter {
             assignUndecidedConstituents(constituentsMap, relations);
             //            create relation children of internal SDRS
             fixInternalRelations(constituentsMap);
-            for (int i : sentences.keySet()) {
+            for (int i : constituentsMap.keySet()) {
                 ArrayList<TaggedToken> sentence = sentences.get(i);
                 /**
                  * if B is dependant on A, we disregard B as an independent constituent.
@@ -184,7 +186,6 @@ public class DRTSegmenter {
                         filterRelations(relationMap.get(i), sentenceConstituents) :
                         new ArrayList<>();
                 ArrayList<DRTElement> roots = assignRootElement(sentenceConstituents,rootRelations);
-
             }
         }
     }

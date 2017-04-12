@@ -12,6 +12,7 @@ import deplambda.DRT.DRTSegmenter;
 import deplambda.DRT.Relation;
 import deplambda.DRT.XDRS;
 import deplambda.others.NlpPipeline;
+import deplambda.util.XMLReader;
 import edu.cornell.cs.nlp.spf.mr.lambda.LogicalExpression;
 import edu.stanford.nlp.util.ArraySet;
 import edu.stanford.nlp.util.Triple;
@@ -60,7 +61,7 @@ public class DRTPipeline {
                 processFolder(child);
             } else if (child.toString().endsWith("drs.xml")) {
                 System.out.println("Parsing: " + subDirPath + " " + child.toString());
-                XDRS root = parseXML(child);
+                XDRS root = XMLReader.parseXML(child);
                 System.out.println("Segmenting the XDRS into sentences...");
                 DRTSegmenter.extractSentences(root.getTaggedTokens(),
                         root.gatherAllConstituents(new ArrayList<Constituent>()),
@@ -79,48 +80,33 @@ public class DRTPipeline {
         }
     }
 
-    private ArrayList<Triple> processTuples(ArrayList<Tuple> DRTs){
-        ArrayList<Triple> xdrsList = new ArrayList<>();
-//        take the sentences and parse it
-        JsonParser JSONparser = new JsonParser();
-        for (Tuple tuple: DRTs){
-            JsonObject sentenceJson = JSONparser.parse(String.format("{\"sentence\":\"%s\"}",tuple.get(0).toString().replace("\"",""))).getAsJsonObject();
-            pipelineOne.processSentence(sentenceJson);
-            pipelineTwo.processSentence(sentenceJson);
-            pipelineThree.processSentence(sentenceJson);
-            pipelineFour.processSentence(sentenceJson);
-//        for each lambda expression in the forest create a DRTElement and serialize it
-//            for (Object sentence: forestList){
-//                JsonObject sentenceJson = (JsonObject) sentence;
-//            String sentString = sentenceJson.get("sentence").getAsString();
-//            System.out.println(sentString);
-//            String sentObliq = sentenceJson.get("deplambda_oblique_tree").getAsString();
-//            System.out.println(sentObliq);
-            String sentLambda = sentenceJson.get("deplambda_expression").getAsString();
-//            System.out.println(sentLambda);
-            XDRS autoDRT = Lambda2DRT.transform(
-                    new Sentence(sentenceJson),
-                    LogicalExpression.read(sentLambda),
-                    false);
-            xdrsList.add(Triple.makeTriple(tuple.get(0), autoDRT,tuple.get(1)));
-            }
-        return xdrsList;
-        }
-
-    public static XDRS parseXML(File drs) throws ParserConfigurationException, IOException, SAXException {
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        dbFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd",false);
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(drs);
-
-        doc.getDocumentElement().normalize();
-
-        Node xdrs = doc.getElementsByTagName("xdrs").item(0);
-        XDRS xdrsRoot = new XDRS();
-        xdrsRoot.parseContent(xdrs);
-
-        return xdrsRoot;
-    }
+//    private ArrayList<Triple> processTuples(ArrayList<Tuple> DRTs){
+//        ArrayList<Triple> xdrsList = new ArrayList<>();
+////        take the sentences and parse it
+//        JsonParser JSONparser = new JsonParser();
+//        for (Tuple tuple: DRTs){
+//            JsonObject sentenceJson = JSONparser.parse(String.format("{\"sentence\":\"%s\"}",tuple.get(0).toString().replace("\"",""))).getAsJsonObject();
+//            pipelineOne.processSentence(sentenceJson);
+//            pipelineTwo.processSentence(sentenceJson);
+//            pipelineThree.processSentence(sentenceJson);
+//            pipelineFour.processSentence(sentenceJson);
+////        for each lambda expression in the forest create a DRTElement and serialize it
+////            for (Object sentence: forestList){
+////                JsonObject sentenceJson = (JsonObject) sentence;
+////            String sentString = sentenceJson.get("sentence").getAsString();
+////            System.out.println(sentString);
+////            String sentObliq = sentenceJson.get("deplambda_oblique_tree").getAsString();
+////            System.out.println(sentObliq);
+//            String sentLambda = sentenceJson.get("deplambda_expression").getAsString();
+////            System.out.println(sentLambda);
+//            XDRS autoDRT = Lambda2DRT.transform(
+//                    new Sentence(sentenceJson),
+//                    LogicalExpression.read(sentLambda),
+//                    false);
+//            xdrsList.add(Triple.makeTriple(tuple.get(0), autoDRT,tuple.get(1)));
+//            }
+//        return xdrsList;
+//        }
 
     public static Map<String,String> getOptionOne(Map<String,String> options){
         Map<String,String> newOptions =
@@ -228,7 +214,7 @@ public class DRTPipeline {
 
 
         DRTPipeline drtPipeline = new DRTPipeline(options);
-        File rootDir = new File("/Users/ffancellu/Documents/Research/Resource/gmb-2.2.0/data");
+        File rootDir = new File("/Users/ffancellu/Documents/Research/Resource/gmb-2.2.0/data/");
         drtPipeline.processFolder(rootDir);
     }
 
