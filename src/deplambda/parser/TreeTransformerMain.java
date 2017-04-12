@@ -64,17 +64,23 @@ public class TreeTransformerMain extends ProcessStreamInterface {
           sentenceSemantics.second().get(0).toString());
     }
 
-    // Post processing lambdas.
     JsonArray jsonParses = new JsonArray();
-    for (LogicalExpression parse : sentenceSemantics.second()) {
-      List<String> cleaned =
-          Lists.newArrayList(PostProcessLogicalForm.process(sentence, parse,
-              lexicalizePredicates));
-
-      // TODO: Better sorting function is required.
-      Collections.sort(cleaned);
-      jsonParses.add(jsonParser.parse(gson.toJson(cleaned)));
+    for (LogicalExpression parse: sentenceSemantics.second()){
+      jsonParses.add(jsonParser.parse(String.format("{\"lambda\":\"%s\"}",parse.toString())));
     }
     sent.add(SentenceKeys.DEPENDENCY_LAMBDA, jsonParses);
+
+//    // Post processing lambdas.
+//    JsonArray jsonParses = new JsonArray();
+//    for (LogicalExpression parse : sentenceSemantics.second()) {
+//      List<String> cleaned =
+//          Lists.newArrayList(PostProcessLogicalForm.process(sentence, parse,
+//              lexicalizePredicates));
+//
+//      // TODO: Better sorting function is required.
+//      Collections.sort(cleaned);
+//      jsonParses.add(jsonParser.parse(gson.toJson(cleaned)));
+//    }
+//    sent.add(SentenceKeys.DEPENDENCY_LAMBDA, jsonParses);
   }
 }

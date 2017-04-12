@@ -79,6 +79,7 @@ public class NlpPipeline extends in.sivareddy.graphparser.util.NlpPipeline {
             Boolean.parseBoolean(options.getOrDefault(
                 DEPLAMBDA_LEXICALIZE_PREDICATES, "true"));
 
+
         Logger logger = null;
         if (options.containsKey(DEPLAMBDA_DEBUG_TO_FILE)
             && !options.get(DEPLAMBDA_DEBUG_TO_FILE).trim().equals("")) {

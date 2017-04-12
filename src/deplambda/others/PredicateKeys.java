@@ -6,7 +6,9 @@ import java.util.Set;
 
 public class PredicateKeys {
   public static final String EVENT_ENTITY_PREFIX = "p_EVENT.ENTITY_";
+  public static final String ENTITY_ENTITY_PREFIX = "p_ENTITY.ENTITY_";
   public static final String EVENT_EVENT_PREFIX = "p_EVENT.EVENT_";
+  public static final String EVENT_SUB_PREFIX = "p_EVENT.SUB_";
   public static final String COUNT_PREFIX = "p_COUNT";
   public static final String TARGET_PREFIX = "p_TARGET";
   public static final String EVENT_PREFIX = "p_EVENT_";

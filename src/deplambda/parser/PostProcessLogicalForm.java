@@ -78,6 +78,7 @@ public class PostProcessLogicalForm {
     return cleanedPredicates;
   }
 
+
   private static void populateEquals(List<Pair<Term, Term>> equalPairs,
       Map<Term, List<Integer>> varToEntities,
       Map<Term, List<Integer>> varToEvents) {
@@ -569,7 +570,7 @@ public class PostProcessLogicalForm {
    * from 5 or 3, but since 5 is not a named entity, we make it the likely
    * source.
    * 
-   * @param varToEntities
+   * @param varToEvents
    * @param sentence
    */
   private static void cleanVarToEvents(Map<Term, List<Integer>> varToEvents,
@@ -588,5 +589,31 @@ public class PostProcessLogicalForm {
         eventIds.add(varToEvents.get(key).get(0));
       varToEvents.put(key, eventIds);
     }
+  }
+
+  public static void getCleanVarToEntities(Map<Term,List<Integer>> varToEntities,Sentence sentence){
+    cleanVarToEntities(varToEntities,sentence);
+  }
+
+  public static void getCleanVarToEvents(Map<Term,List<Integer>> varToEvents,Sentence sentence){
+    cleanVarToEvents(varToEvents,sentence);
+  }
+
+  public static void getPopulateEquals(List<Pair<Term, Term>> equalPairs,
+                                       Map<Term,List<Integer>> varToEntities,
+                                       Map<Term,List<Integer>> varToEvents){
+    populateEquals(equalPairs,varToEntities,varToEvents);
+  }
+
+  public static String getGetCleanedBasePredicate(String basePredicate){
+    return getCleanedBasePredicate(basePredicate);
+  }
+
+  public static boolean getIsNamedEntity(Sentence sentence,int index){
+    return isKBEntity(sentence,index);
+  }
+
+  public static String getGetEntityVar(Sentence sentence, int entityIdx){
+    return getEntityVar(sentence, entityIdx);
   }
 }
