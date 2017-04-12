@@ -11,7 +11,6 @@ def traverse_folder(root_folder):
             traverse_folder(child_path)
         elif child_path.endswith('tok.off'):
 	    create_tok(child_path)
-            sys.exit(0)
             
 
 def create_tok(fname):
@@ -19,7 +18,8 @@ def create_tok(fname):
     current_id = 1 
     with codecs.open(fname,'rb','utf8') as tok_file:
         for line in tok_file:
-            _,_,_id,word = line.strip().split()
+            _,_,_id = line.strip().split()[:3]
+            word = " ".join(line.strip().split()[3:])
             if int(_id[0])!=current_id:
                 words.append('\n')
                 current_id = int(_id[0]) 

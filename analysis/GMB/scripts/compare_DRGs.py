@@ -3,89 +3,77 @@ __author__="Federico Fancellu"
 import os
 import sys
 import codecs
+import re
+import itertools
+from collections import Counter
+from operator import itemgetter
 
 class DAG(object):
     def __init__(self):
-       self.nodes = {}
-       self.edges = {}
        self.root = None   
-    
+       self.graph = {}
+ 
     def get_triplets(self,text):
         for line in text:
             line = line.strip()
             if line and not line.startswith('%'):
                 #(s)tart node, (r)elation, (e)nd node
                 s,r,e = line.split()[:3]
-                if r not in ['main','referent']:
-                    nodeS = Node(s) if s not in self.nodes else self.nodes[s]
-                    nodeE = Node(e) if e not in self.nodes else self.nodes[e]
-                
-                    nodeS.add_child(nodeE)
-                    nodeE.add_parent(nodeS)
-                
-                    if nodeS not in self.nodes: self.nodes[s] = nodeS
-                    if nodeE not in self.nodes: self.nodes[e] = nodeE
-                
-                    self.edges[(nodeS,nodeE)] = r
-     
-    def determine_root(self):
-        for n in self.nodes:
-            if not self.nodes[n].parents:
-                return self.nodes[n]
+                if r not in ['main','referent']:     
+                    self.graph.setdefault(s,[]).append(e)
 
-class Node(object):
-    def __init__(self,name):
-        self.name = name
-        self.parents = []
-        self.children = []
-
-    def __str__(self):
-        return self.name
-
-    def add_parent(self,parent_node):
-        self.parents.append(parent_node)
-
-    def add_child(self, child_node):
-        self.children.append(child_node)
+    def get_k_nodes(self):
+        k_nodes = [x for x in self.graph if x.startswith('k') and ':' not in x]
+        k_nodes_sep = [(x,self.getAllExceptK(x,{})) for x in k_nodes]
+        return k_nodes_sep
     
-    def print_children(self,depth=0):
-        print '\t'*depth,self,[x.name for x in self.parents],[x.name for x in self.children]
-        depth+=1
-        for child in self.children:
-            child.print_children(depth)
+    def getAllExceptK(self, k, subgraph = {}):
+        if k in self.graph:
+            if self.graph[k]:
+                for child in self.graph[k]:
+                    if child.startswith('k') and ':' not in child:
+                        subgraph.setdefault(k,[])
+                    else:
+                        subgraph.setdefault(k,[]).append(child)
+                        self.getAllExceptK(child,subgraph)
+        else: subgraph.setdefault(k,[])
+        return subgraph
 
-def AMRize(input_node, visitedVars=[], AMRstr="", depth=0):
-    if input_node.name.startswith('k'):
-        if ':' not in input_node.name:
-            AMRstr+='\t'*depth + ":K (%s / K\n" % input_node.name
+    def AMRize(self, x, subgraph,varTally={},visitedVars={}):
+        def map2char(var_type):
+            var_type = var_type.replace('(','')
+            if var_type.startswith('k'):
+                if var_type.count(':')>0:
+                    return var_type.split(':')[-1][0], var_type.split(':')[-1][0], ':V'
+                else:
+                    return var_type[0],'K',':K'
+            if var_type.startswith('c'):
+                var,cond = var_type.split(':')[:2]
+                return var[0],cond,':C'
+        print x
+        genericChar, text, _type = map2char(x)
+        if x in visitedVars:
+            varChar = visitedVars[x]
         else:
-            if input_node.name.count(':')==1:
-                k,v = input_node.name.split(":")
-                if k+v not in visitedVars:
-                    visitedVars.append(k+v) 
-                    AMRstr+='\t'*depth + "%s:VAR (%s / %s" % ('\t'*depth,k+v,v[0])
-                else: AMRstr+='\t'*depth + "%s:VAR %s" % ('\t'*depth,k+v)
-            elif input_node.name.count(':')==2:
-                k,p,v = input_node.name.split(':')
-                if k+p+v not in visitedVars:
-                    visitedVars.append(k+v+p)
-                    AMRstr+='\t'*depth + "%s:VAR (%s / %s" % ('\t'*depth,k+p+v,v[0])
-                else: AMRstr+='\t'*depth + "%s:VAR %s" % ('\t'*depth,k+p+v)
-    if input_node.name.startswith('c'):
-        cidx,name= input_node.name.split(':')[:2]
-        AMRstr+='\t'*depth + ":C (%s / %s\n" % (cidx,name)
-    for child in input_node.children:
-        AMRstr = AMRize(child, visitedVars, AMRstr, depth+1)
-        AMRstr += ('\t'*depth)+')\n'
-    return AMRstr
-   
+            if genericChar in varTally:
+                varTally[genericChar] = varTally[genericChar]+1
+            else: varTally[genericChar]=1
+            varChar = "%s%d" % (genericChar, varTally[genericChar])
+
+        if len(subgraph[x]) == 0:
+            if x in visitedVars:
+                return "%s %s " % (_type,visitedVars[x])
+            else:
+                visitedVars[x] = varChar
+                return "%s (%s/%s)" % (_type,varChar,varChar[0])
+        else:
+            return "%s ( %s/%s" % (_type,varChar,text) + " " + "".join(self.AMRize(child,subgraph,varTally,visitedVars) for child in subgraph[x]) + ")"
 
 def graphize(txt): 
    dag = DAG()
    dag.get_triplets(txt)
-   #print dag.nodes['c28:now:1'].parents[0].name
-   return dag.determine_root()
-    
+   return dag
+
 def traverse_folder(root_folder):
     for _dir in os.listdir(root_folder):
         child_path = os.path.join(root_folder,_dir)
@@ -95,20 +83,37 @@ def traverse_folder(root_folder):
             else:
                 traverse_folder(child_path)
 
+def amr_matrix_match(gAmrs,sAmrs):
+    m = [[0 for x in range(len(sAmrs))] for j in range(len(gAmrs))]
+    for ig, g in enumerate(gAmrs):
+        for _is, s in enumerate(sAmrs):
+            conds_g = re.findall(r'c\d+/([\w\-\.,!\?]*) :V',g,re.IGNORECASE)
+            conds_s = re.findall(r'c\d+/([\w\-\.,!\?]*) :V',s,re.IGNORECASE)
+            m[ig][_is]= len([i for i in itertools.chain.from_iterable([k] * v for k, v in (Counter(conds_g) & Counter(conds_s)).iteritems())])
+    g2s_align = [max(enumerate(r), key=itemgetter(1))[0] for r in m]
+    return [(gAmrs[g],sAmrs[s]) for g,s in enumerate(g2s_align)]   
+
+def output(child_path,match_pairs):
+    o1 = codecs.open(os.path.join(child_path,'gold.amr'),'wb','utf8')
+    o2 = codecs.open(os.path.join(child_path,'silver.amr'),'wb','utf8')
+    for gold_amr,silver_amr in match_pairs:
+        o1.write(gold_amr+'\n\n')
+        o2.write(silver_amr+'\n\n')
+    o1.close()
+    o2.close()
 def compare(child_path):
-    print os.path.join(child_path,'en.drg')
+    print child_path
     with codecs.open(os.path.join(child_path,'en.drg'),'rb','utf8') as gold:
         gold_graph = graphize(gold)
-        gold_amr = AMRize(gold_graph)
+        k_nodes_gold = gold_graph.get_k_nodes()
+        k_amr_gold = ["(r/root "+ gold_graph.AMRize(x,subgraph) + ")" for x, subgraph in k_nodes_gold]
     with codecs.open(os.path.join(child_path,'en.silver.drg'),'rb','utf8') as silver:
         silver_graph = graphize(silver)
-        silver_amr = AMRize(silver_graph)
-    o1 = codecs.open('gold','wb','utf8')
-    o1.write(gold_amr)
-    o1.close()
-    o2 = codecs.open('silver','wb','utf8')
-    o2.write(silver_amr)
-    o2.close()
-    sys.exit(0)
-if __name__=="__main__":
+        k_nodes_silver = silver_graph.get_k_nodes()
+        k_amr_silver = ["(r/root "+ silver_graph.AMRize(x,subgraph) + ")" for x, subgraph in k_nodes_silver]
+   
+    match_pairs = amr_matrix_match(k_amr_gold, k_amr_silver)
+    output(child_path,match_pairs)
+
+if __name__=="__main__":    
     traverse_folder(sys.argv[1])
