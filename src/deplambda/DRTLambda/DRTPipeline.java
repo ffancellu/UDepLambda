@@ -1,42 +1,55 @@
 package deplambda.DRTLambda;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import deplambda.DRT.Constituent;
 import deplambda.DRT.DRTSegmenter;
 import deplambda.DRT.Relation;
 import deplambda.DRT.XDRS;
 import deplambda.others.NlpPipeline;
+import deplambda.others.SentenceKeys;
+import deplambda.util.DependencyTree;
 import deplambda.util.XMLReader;
-import edu.cornell.cs.nlp.spf.mr.lambda.LogicalExpression;
-import edu.stanford.nlp.util.ArraySet;
-import edu.stanford.nlp.util.Triple;
+import edu.cornell.cs.nlp.spf.mr.lambda.FlexibleTypeComparator;
+import edu.cornell.cs.nlp.spf.mr.lambda.LogicLanguageServices;
+import edu.cornell.cs.nlp.spf.mr.language.type.MutableTypeRepository;
+import edu.stanford.nlp.parser.nndep.DependencyParser;
 import org.apache.jena.atlas.lib.Tuple;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
-import deplambda.util.Sentence;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by ffancellu on 20/02/2017.
  */
 public class DRTPipeline {
 
-//    static MutableTypeRepository types;
-    static final int BATCHSIZE = 50;
-    private NlpPipeline pipelineOne, pipelineTwo, pipelineThree, pipelineFour;
+    static Gson gson = new Gson();
+    private NlpPipeline pipelineOne, pipelineTwo, pipelineThree;
+    static MutableTypeRepository types;
+
+    private DependencyParser depParse;
+
+    static {
+        try {
+            DependencyTree.LEXICAL_KEY = SentenceKeys.LEMMA_KEY;
+            types = new MutableTypeRepository("lib_data/UDLambdaNeg/ud.types.enh.txt");
+
+            LogicLanguageServices.setInstance(new LogicLanguageServices.Builder(
+                    types, new FlexibleTypeComparator()).closeOntology(false)
+                    .setNumeralTypeName("i").build());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public DRTPipeline(Map<String,String> options) throws Exception {
@@ -48,8 +61,6 @@ public class DRTPipeline {
         System.err.println("2nd pipeline loaded!");
         pipelineThree = new NlpPipeline(getOptionThree(options));
         System.err.println("3th pipeline loaded!");
-        pipelineFour = new NlpPipeline(getOptionFour(options));
-        System.err.println("4th pipeline loaded!");
     }
 
     public void processFolder(File rootDir) throws IOException, SAXException, ParserConfigurationException {
@@ -63,9 +74,20 @@ public class DRTPipeline {
                 System.out.println("Parsing: " + subDirPath + " " + child.toString());
                 XDRS root = XMLReader.parseXML(child);
                 System.out.println("Segmenting the XDRS into sentences...");
-                DRTSegmenter.extractSentences(root.getTaggedTokens(),
+                ArrayList<JsonObject> tuples = DRTSegmenter.extractSentences(root.getTaggedTokens(),
                         root.gatherAllConstituents(new ArrayList<Constituent>()),
                         root.gatherAllRelations(new ArrayList<Relation>()));
+                System.out.println("Gather dependency graphs for the sentences...");
+                for (JsonObject jsonObj: tuples){
+                    this.pipelineOne.processIndividualSentence(jsonObj);
+                    this.pipelineTwo.processIndividualSentence(jsonObj);
+                    this.pipelineThree.processIndividualSentence(jsonObj);
+                    System.out.println(jsonObj);
+                    System.exit(0);
+                }
+
+
+
 //                System.out.println("Extracting triplets...");
 //                ArrayList<Tuple> tuples = root.segmentConstituents();
 //                System.out.println("Processing triplets...");
@@ -147,27 +169,27 @@ public class DRTPipeline {
         newOptions.put("ssplit.eolonly", options.get("ssplit.eolonly3"));
         newOptions.put("languageCode", options.get("languageCode3"));
         newOptions.put("posTagKey", options.get("posTagKey"));
-        newOptions.put("pos.model", options.get("pos.model"));
+//        newOptions.put("pos.model", options.get("pos.model"));
         newOptions.put("depparse.model", options.get("depparse.model"));
         return newOptions;
     }
 
-    private static Map<String,String> getOptionFour(Map<String,String> options){
-        Map<String,String> newOptions = new HashMap<>();
-        newOptions.put("annotators",options.get("annotators4"));
-        newOptions.put("tokenize.whitespace", options.get("tokenize.whitespace4"));
-        newOptions.put("ssplit.eolonly",options.get("ssplit.eolonly4"));
-        newOptions.put("languageCode", options.get("languageCode4"));
-        newOptions.put("deplambda", options.get("deplambda"));
-        newOptions.put("deplambda.definedTypesFile", options.get("deplambda.definedTypesFile"));
-        newOptions.put("deplambda.treeTransformationsFile", options.get("deplambda.treeTransformationsFile"));
-        newOptions.put("deplambda.relationPrioritiesFile", options.get("deplambda.relationPrioritiesFile"));
-        newOptions.put("deplambda.lambdaAssignmentRulesFile", options.get("deplambda.lambdaAssignmentRulesFile"));
-        newOptions.put("deplambda.lexicalizePredicates", options.get("deplambda.lexicalizePredicates"));
-        newOptions.put("deplambda.debugToFile", options.get("deplambda.debugToFile"));
-
-        return newOptions;
-    }
+//    private static Map<String,String> getOptionFour(Map<String,String> options){
+//        Map<String,String> newOptions = new HashMap<>();
+//        newOptions.put("annotators",options.get("annotators4"));
+//        newOptions.put("tokenize.whitespace", options.get("tokenize.whitespace4"));
+//        newOptions.put("ssplit.eolonly",options.get("ssplit.eolonly4"));
+//        newOptions.put("languageCode", options.get("languageCode4"));
+//        newOptions.put("deplambda", options.get("deplambda"));
+//        newOptions.put("deplambda.definedTypesFile", options.get("deplambda.definedTypesFile"));
+//        newOptions.put("deplambda.treeTransformationsFile", options.get("deplambda.treeTransformationsFile"));
+//        newOptions.put("deplambda.relationPrioritiesFile", options.get("deplambda.relationPrioritiesFile"));
+//        newOptions.put("deplambda.lambdaAssignmentRulesFile", options.get("deplambda.lambdaAssignmentRulesFile"));
+//        newOptions.put("deplambda.lexicalizePredicates", options.get("deplambda.lexicalizePredicates"));
+//        newOptions.put("deplambda.debugToFile", options.get("deplambda.debugToFile"));
+//
+//        return newOptions;
+//    }
 
     public static void main(String[] args) throws Exception {
 //        if (args.length == 0 || args.length % 2 != 0) {
@@ -198,19 +220,20 @@ public class DRTPipeline {
         options.put("ssplit.eolonly3", "true");
         options.put("languageCode3", "en");
         options.put("posTagKey", "UD");
-        options.put("pos.model", "lib_data/ud-models-v1.3/en/pos-tagger/utb-caseless-en-bidirectional-glove-distsim-lower.tagger");
-        options.put("depparse.model", "lib_data/ud-models-v1.3/en/neural-parser/en-lowercase-glove50.lower.nndep.model.txt.gz");
+//        options.put("pos.model", "lib_data/ud-models-v1.3/en/pos-tagger/utb-caseless-en-bidirectional-glove-distsim-lower.tagger");
+//        options.put("depparse.model", "lib_data/ud-models-v1.3/en/neural-parser/en-lowercase-glove50.lower.nndep.model.txt.gz");
+        options.put("depparse.model", "lib_data/ud-models-v2/nndep.model.udv2.emb50.txt.gz");
         options.put("annotators4","tokenize,ssplit");
         options.put("tokenize.whitespace4", "true");
         options.put("ssplit.eolonly4", "true");
         options.put("languageCode4", "en");
-        options.put("deplambda", "true");
-        options.put("deplambda.definedTypesFile", "lib_data/UDLambdaNeg/ud.types.enh.txt");
-        options.put("deplambda.treeTransformationsFile", "lib_data/UDLambdaNeg/ud-tree-transformation-rules.proto.enh.txt");
-        options.put("deplambda.relationPrioritiesFile", "lib_data/UDLambdaNeg/ud-relation-priorities.proto.enh.txt");
-        options.put("deplambda.lambdaAssignmentRulesFile", "lib_data/UDLambdaNeg/ud-lambda-assignment-rules.proto.enh.txt");
-        options.put("deplambda.lexicalizePredicates", "true");
-        options.put("deplambda.debugToFile", "debug.txt");
+//        options.put("deplambda", "true");
+//        options.put("deplambda.definedTypesFile", "lib_data/UDLambdaNeg/ud.types.enh.txt");
+//        options.put("deplambda.treeTransformationsFile", "lib_data/UDLambdaNeg/ud-tree-transformation-rules.proto.enh.txt");
+//        options.put("deplambda.relationPrioritiesFile", "lib_data/UDLambdaNeg/ud-relation-priorities.proto.enh.txt");
+//        options.put("deplambda.lambdaAssignmentRulesFile", "lib_data/UDLambdaNeg/ud-lambda-assignment-rules.proto.enh.txt");
+//        options.put("deplambda.lexicalizePredicates", "true");
+//        options.put("deplambda.debugToFile", "debug.txt");
 
 
         DRTPipeline drtPipeline = new DRTPipeline(options);

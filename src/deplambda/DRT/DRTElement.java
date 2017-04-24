@@ -7,6 +7,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
 
+import java.rmi.activation.ActivationGroup_Stub;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -195,5 +196,17 @@ public class DRTElement {
         }
         sb.append(Strings.repeat('\t',depth) + ")\n");
         return sb.toString().trim();
+    }
+
+    public ArrayList<String> gatherGraphTriplets(ArrayList<String> collect){
+        if (this instanceof Condition){
+            String parentNode = this.getParent().toString();
+            String childrenNodes = ((Condition) this).getVarYield().toString();
+            collect.add(String.format("%s -> %s -> %s", parentNode,((Condition) this).getName(),childrenNodes));
+        }
+        for (DRTElement child: this.children){
+            child.gatherGraphTriplets(collect);
+        }
+        return collect;
     }
 }

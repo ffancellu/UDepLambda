@@ -1,8 +1,13 @@
 package deplambda.DRT;
 
-import com.sun.tools.internal.jxc.ap.Const;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import joptsimple.internal.Strings;
 
-import java.lang.reflect.Array;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,6 +15,8 @@ import java.util.stream.Collectors;
  * Created by ffancellu on 02/04/2017.
  */
 public class DRTSegmenter {
+
+    static Gson gson = new Gson();
 
     public static HashMap<Integer, ArrayList<TaggedToken>> indexSentences(SortedMap<String, TaggedToken> tokenMap){
         HashMap<Integer,ArrayList<TaggedToken>> sentences = new HashMap<>();
@@ -122,9 +129,9 @@ public class DRTSegmenter {
         return relCopy;
     }
 
-    public static ArrayList<DRTElement> assignRootElement(ArrayList<Constituent> constituents,
+    public static DRTElement assignRootElement(ArrayList<Constituent> constituents,
                                          ArrayList<Relation> relations){
-        ArrayList<DRTElement> roots = new ArrayList<>();
+        DRTElement root = new DRTElement();
         if (relations.isEmpty()){
             if (constituents.size()>1){
                 HashMap<String,DRTElement> childConsts = new HashMap<>();
@@ -135,9 +142,9 @@ public class DRTSegmenter {
                 for (Constituent c: constituents){
                     rootRel.setParentChildRel(c);
                 }
-                roots.add(rootRel);
+                root = rootRel;
             } else {
-                roots.add(constituents.get(0));
+                root = constituents.get(0);
             }
         } else {
             if (constituents.size()/relations.size()!=2){
@@ -149,10 +156,10 @@ public class DRTSegmenter {
                 Relation rootRel = new Relation(relations.get(0).getName(),childConsts);
                 rootRel.setParentChildRel(constituents.get(0));
                 rootRel.setParentChildRel(constituents.get(1));
-                roots.add(rootRel);
+                root = rootRel;
             }
         }
-        return roots;
+        return root;
     }
 
     public static void fixInternalRelations(HashMap<Integer,ArrayList<Constituent>> constituentMap) {
@@ -165,9 +172,10 @@ public class DRTSegmenter {
 
     }
 
-    public static void extractSentences(SortedMap<String,TaggedToken> tokenMap,
-                                        ArrayList<Constituent> constituents,
-                                        ArrayList<Relation> relations){
+    public static ArrayList<JsonObject> extractSentences(SortedMap<String,TaggedToken> tokenMap,
+                                                   ArrayList<Constituent> constituents,
+                                                   ArrayList<Relation> relations){
+        ArrayList<JsonObject> jsonObjs = new ArrayList<>();
         if (!constituents.isEmpty()) {
             HashMap<Integer, ArrayList<TaggedToken>> sentences = indexSentences(tokenMap);
             HashMap<Integer, ArrayList<Constituent>> constituentsMap = indexConstituents(constituents);
@@ -185,9 +193,18 @@ public class DRTSegmenter {
                 ArrayList<Relation> rootRelations = relationMap.containsKey(i) ?
                         filterRelations(relationMap.get(i), sentenceConstituents) :
                         new ArrayList<>();
-                ArrayList<DRTElement> roots = assignRootElement(sentenceConstituents,rootRelations);
+                DRTElement root = assignRootElement(sentenceConstituents, rootRelations);
+
+                JsonObject sentenceObject = new JsonObject();
+                sentenceObject.add("sentence",new Gson().toJsonTree(
+                       sentence.stream().map(x-> x.toString()).collect(Collectors.joining(" "))
+                ));
+//                gather the constituents and put them as triplets in a list
+                System.out.println(root.gatherGraphTriplets(new ArrayList()));
+                jsonObjs.add(sentenceObject);
             }
         }
+        return jsonObjs;
     }
 
 
