@@ -32,16 +32,17 @@ class DAG(object):
             if self.graph[k]:
                 for child in self.graph[k]:
                     if child.startswith('k') and ':' not in child:
-                        subgraph.setdefault(k,[])
+                        subgraph.setdefault(k,set())
                     else:
-                        subgraph.setdefault(k,[]).append(child)
+                        subgraph.setdefault(k,set()).add(child)
                         self.getAllExceptK(child,subgraph)
-        else: subgraph.setdefault(k,[])
+        else: subgraph.setdefault(k,set())
         return subgraph
 
     def AMRize(self, x, subgraph,varTally={},visitedVars={}):
         def map2char(var_type):
             var_type = var_type.replace('(','')
+            var_type = var_type.replace(')','')
             if var_type.startswith('k'):
                 if var_type.count(':')>0:
                     return var_type.split(':')[-1][0], var_type.split(':')[-1][0], ':V'
@@ -50,8 +51,8 @@ class DAG(object):
             if var_type.startswith('c'):
                 var,cond = var_type.split(':')[:2]
                 return var[0],cond,':C'
-        print x
         genericChar, text, _type = map2char(x)
+        print genericChar,text,_type
         if x in visitedVars:
             varChar = visitedVars[x]
         else:
@@ -101,19 +102,25 @@ def output(child_path,match_pairs):
         o2.write(silver_amr+'\n\n')
     o1.close()
     o2.close()
+
 def compare(child_path):
     print child_path
     with codecs.open(os.path.join(child_path,'en.drg'),'rb','utf8') as gold:
         gold_graph = graphize(gold)
         k_nodes_gold = gold_graph.get_k_nodes()
-        k_amr_gold = ["(r/root "+ gold_graph.AMRize(x,subgraph) + ")" for x, subgraph in k_nodes_gold]
+        k_amr_gold = ["(r/root "+ gold_graph.AMRize(x,subgraph,{},{}) + ")" for x, subgraph in k_nodes_gold]
     with codecs.open(os.path.join(child_path,'en.silver.drg'),'rb','utf8') as silver:
-        silver_graph = graphize(silver)
-        k_nodes_silver = silver_graph.get_k_nodes()
-        k_amr_silver = ["(r/root "+ silver_graph.AMRize(x,subgraph) + ")" for x, subgraph in k_nodes_silver]
-   
+        try:
+            silver_graph = graphize(silver)
+            k_nodes_silver = silver_graph.get_k_nodes()
+            k_amr_silver = ["(r/root "+ silver_graph.AMRize(x,subgraph,{},{}) + ")" for x, subgraph in k_nodes_silver]
+        except:
+            #this should trigger when there were errors parsing the silver.drg
+            print "Error parsing silver.drg in %s" % child_path
+            return
     match_pairs = amr_matrix_match(k_amr_gold, k_amr_silver)
     output(child_path,match_pairs)
 
 if __name__=="__main__":    
-    traverse_folder(sys.argv[1])
+    #traverse_folder(sys.argv[1])
+    compare(sys.argv[1])
