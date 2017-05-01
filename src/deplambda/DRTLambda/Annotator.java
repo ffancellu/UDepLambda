@@ -25,13 +25,17 @@ public class ParserTest {
                         "annotators", "tokenize,ssplit,pos,lemma,depparse",
                         "ssplit.isOneSentence", "true",
                         "parse.model", "edu/stanford/nlp/models/srparser/englishSR.ser.gz",
-//                        "posTagKey", "UD",
+                        "ner.applyNumericClassifiers", "false",
+                        "ner.useSUTime", "false",
+                        "preprocess.addDateEntities", "true",
+                        "preprocess.addNamedEntities", "true",
+                        "posTagKey", "UD",
                         "pos.model", "lib_data/ud-models-v1.3/en/pos-tagger/utb-en-bidirectional-glove-distsim-lower.tagger",
-                        "depparse.model", "lib_data/ud-models-v2/nndep.model.udv2.emb50.txt.gz",
+                        "depparse.model", "lib_data/ud-models-v2/nndep.model.udv2.emb50.allUniversalPoS.txt.gz",
                         "tokenize.language", "en"));
 
         // read some text in the text variable
-                String text = "I was not at home that day ."; // Add your text here!
+                String text = "Thousands of applicants came from everywhere to try his food ."; // Add your text here!
                 Annotation document = new Annotation(text);
 
         // run all Annotators on this text
