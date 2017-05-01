@@ -15,13 +15,6 @@ _CLIENT_ = MongoClient("localhost")
 db = _CLIENT_.GMBfiles
 collection = db.data
 
-already_visited = []
-with codecs.open('../docs_type_info.txt','rb','utf8') as out:
-    for line in out:
-        if line.startswith('%'):
-            par,doc = line[1:].strip().split('\t')
-            already_visited.append((par,doc))
-
 def get_all_files(root,res):
     for child in os.listdir(root):
         child_path = os.path.join(root,child)
@@ -48,8 +41,6 @@ if __name__=="__main__":
     res_all = get_all_files(sys.argv[1],[])
     for filepath in res_all:
         par, doc = filepath.split('/')[-2:]
-        print already_visited[:10]
-        if (par,doc) not in already_visited:
             print "Processing %s :: %s " % (par,doc)
             response = requests.get("http://gmb.let.rug.nl/explorer/explore.php?part=%s&doc_id=%s" % (par[1:],doc[1:])+\
             "&type=bows&filter_part=&filter_status=A&filter_subcorpus=&filter_bows=&filter_warnings=")
