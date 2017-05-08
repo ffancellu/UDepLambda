@@ -5,7 +5,10 @@ import org.apache.jena.atlas.lib.Tuple;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by ffancellu on 25/02/2017.
@@ -21,9 +24,9 @@ public class XDRS extends DRTElement{
     public SortedMap<String,TaggedToken> getTaggedTokens(){return taggedTokens;}
 
     private Map<String,DRTVariable> gatherAllVariables(Node node) {
-        Map<String,DRTVariable> XDRSVariables = new HashMap<>();
+        Map<String, DRTVariable> XDRSVariables = new HashMap<>();
         NodeList allVars = ((Element) node).getElementsByTagName("dr");
-        for (int i = 0;i<allVars.getLength();i++){
+        for (int i = 0; i < allVars.getLength(); i++) {
             DRTVariable var = new DRTVariable();
             var.parseContent(allVars.item(i));
             XDRSVariables.put(String.format("%s%d", var.getType(), var.getIdx()), var);

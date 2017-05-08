@@ -20,6 +20,7 @@ public class DRS extends DRTElement{
     private Set<DRTVariable> domain;
     private Set<Condition> conditions;
     private HashMap<String,DRTVariable> variables;
+    private int index;
 
     public DRS(){
         label = new String();
@@ -37,6 +38,10 @@ public class DRS extends DRTElement{
     public Set<Condition> getConditions(){
         return conditions;
     }
+
+    public void setIndexDRS(int idx) {this.index =idx;}
+
+    public int getIndexDRS() {return this.index;}
 
     public void addUnaryPredicate(DRTVariable var, String predicate, Map<String,String> extra) {
         Map<String, DRTVariable> yield = ImmutableMap.of("arg0", var);
@@ -64,6 +69,11 @@ public class DRS extends DRTElement{
             }
         }
         return var;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return (DRS) super.clone();
     }
 
     @Override

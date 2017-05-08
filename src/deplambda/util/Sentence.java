@@ -91,6 +91,10 @@ public class Sentence {
     return rootNode;
   }
 
+  public List<DependencyTree> getnodes() {
+    return nodes;
+  }
+
   public String getLemma(int index) {
     JsonObject word = getWords().get(index).getAsJsonObject();
     return word.has(SentenceKeys.LEMMA_KEY)

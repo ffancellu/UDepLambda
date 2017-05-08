@@ -1,68 +1,75 @@
 package deplambda.DRTLambda;
 
-import edu.stanford.nlp.ling.CoreAnnotations;
-import edu.stanford.nlp.ling.CoreLabel;
-import edu.stanford.nlp.pipeline.Annotation;
-import edu.stanford.nlp.pipeline.StanfordCoreNLP;
-import edu.stanford.nlp.semgraph.SemanticGraph;
-import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations;
-import edu.stanford.nlp.trees.Tree;
-import edu.stanford.nlp.trees.TreeCoreAnnotations;
-import edu.stanford.nlp.util.CoreMap;
-import edu.stanford.nlp.util.PropertiesUtils;
+import com.google.common.collect.ImmutableMap;
+import com.google.gson.JsonObject;
+import deplambda.others.NlpPipeline;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by ffancellu on 23/04/2017.
  */
-public class ParserTest {
+public class Annotator {
 
-    public static void main (String[] args){
-        // build pipeline
-        StanfordCoreNLP pipeline = new StanfordCoreNLP(
-                PropertiesUtils.asProperties(
-                        "annotators", "tokenize,ssplit,pos,lemma,depparse",
-                        "ssplit.isOneSentence", "true",
-                        "parse.model", "edu/stanford/nlp/models/srparser/englishSR.ser.gz",
-                        "ner.applyNumericClassifiers", "false",
-                        "ner.useSUTime", "false",
-                        "preprocess.addDateEntities", "true",
-                        "preprocess.addNamedEntities", "true",
-                        "posTagKey", "UD",
-                        "pos.model", "lib_data/ud-models-v1.3/en/pos-tagger/utb-en-bidirectional-glove-distsim-lower.tagger",
-                        "depparse.model", "lib_data/ud-models-v2/nndep.model.udv2.emb50.allUniversalPoS.txt.gz",
-                        "tokenize.language", "en"));
+    private NlpPipeline pipelineOne, pipelineTwo, pipelineThree;
 
-        // read some text in the text variable
-                String text = "Thousands of applicants came from everywhere to try his food ."; // Add your text here!
-                Annotation document = new Annotation(text);
-
-        // run all Annotators on this text
-                pipeline.annotate(document);
-
-            List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
-
-            for(CoreMap sentence: sentences) {
-                // traversing the words in the current sentence
-                // a CoreLabel is a CoreMap with additional token-specific methods
-                for (CoreLabel token: sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-                    // this is the text of the token
-                    String word = token.get(CoreAnnotations.TextAnnotation.class);
-                    // this is the POS tag of the token
-                    String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-                    // this is the NER label of the token
-                    String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
-                }
-
-                // this is the parse tree of the current sentence
-                Tree tree = sentence.get(TreeCoreAnnotations.TreeAnnotation.class);
-
-                // this is the Stanford dependency graph of the current sentence
-                SemanticGraph dependencies = sentence.get(SemanticGraphCoreAnnotations.CollapsedCCProcessedDependenciesAnnotation.class);
-                System.out.println(dependencies.toString());
-            }
+    public Annotator(Map<String,String> options) throws Exception {
+//        activate the four UDepLambda pipelines
+        System.err.println("Loading pipelines...");
+        pipelineOne = new NlpPipeline(getOptionOne(options));
+        pipelineTwo = new NlpPipeline(getOptionTwo(options));
+        pipelineThree = new NlpPipeline(getOptionThree(options));
+    }
 
 
+    private Map<String,String> getOptionOne(Map<String,String> options){
+        Map<String,String> newOptions =
+                ImmutableMap.of(
+                        "annotators",
+                        options.get("annotators1"),
+                        "tokenize.language",
+                        options.get("tokenize.language"),
+                        "ner.applyNumericClassifiers",
+                        options.get("ner.applyNumericClassifiers"),
+                        "ner.useSUTime",
+                        options.get("ner.useSUTime")
+                );
+        return newOptions;
+    }
+
+    private Map<String,String> getOptionTwo(Map<String,String> options){
+        Map<String,String> newOptions =
+                ImmutableMap.of(
+                        "preprocess.addDateEntities",
+                        options.get("preprocess.addDateEntities"),
+                        "preprocess.addNamedEntities",
+                        options.get("preprocess.addNamedEntities"),
+                        "annotators",
+                        options.get("annotators2"),
+                        "tokenize.whitespace",
+                        options.get("tokenize.whitespace2"),
+                        "ssplit.eolonly",
+                        options.get("ssplit.eolonly2"));
+        return newOptions;
+    }
+
+    private Map<String,String> getOptionThree(Map<String,String> options){
+        Map<String,String> newOptions = new HashMap<>();
+        newOptions.put("preprocess.lowerCase",options.get("preprocess.lowerCase"));
+        newOptions.put("annotators",options.get("annotators3"));
+        newOptions.put("tokenize.whitespace", options.get("tokenize.whitespace3"));
+        newOptions.put("ssplit.eolonly", options.get("ssplit.eolonly3"));
+        newOptions.put("languageCode", options.get("languageCode3"));
+        newOptions.put("posTagKey", options.get("posTagKey"));
+        newOptions.put("pos.model", options.get("pos.model"));
+        newOptions.put("depparse.model", options.get("depparse.model"));
+        return newOptions;
+    }
+
+    public void parseSentence(JsonObject sentence){
+        this.pipelineOne.processIndividualSentence(sentence);
+        this.pipelineTwo.processIndividualSentence(sentence);
+        this.pipelineThree.processIndividualSentence(sentence);
     }
 }

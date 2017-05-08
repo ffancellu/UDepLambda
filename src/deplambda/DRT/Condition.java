@@ -4,8 +4,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeSet;
 
 /**
  * Created by ffancellu on 11/02/2017.
@@ -35,6 +37,14 @@ public class Condition extends DRTElement{
     public String getName(){return this.name;}
 
     public Map<String,DRTVariable> getVarYield(){return this.yield;}
+    public String prettyVarYield(){
+        StringBuilder sb = new StringBuilder();
+        for(Object k: new TreeSet(this.yield.keySet())){
+            sb.append(this.yield.get((String) k) + " ");
+        }
+        return sb.toString().trim();
+    }
+    public Map<String,String> getExtra(){return this.extra;}
 
     private static DRTVariable fetchVariable(String entityName, Map<String,DRTVariable> vars){
         DRTVariable resVar = null;

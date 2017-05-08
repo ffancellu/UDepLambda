@@ -16,21 +16,23 @@ import java.util.Map;
 public class SDRS extends DRTElement {
 
     private Map<String,Constituent> constituents;
-    private ArraySet<Relation> relations;
+    private ArrayList<Relation> relations;
 //    first if direct child of a XDRS node
-    private boolean first;
+    private int index;
 
     public SDRS(boolean first){
-        first = first;
         constituents = new HashMap<>();
-        relations = new ArraySet<>();
+        relations = new ArrayList<>();
     }
 
     public Map<String,Constituent> getConstituents(){
         return this.constituents;
     }
     public void addRelation(Relation r){ this.relations.add(r);}
-    public ArraySet<Relation> getRelations(){return this.relations;}
+    public ArrayList<Relation> getRelations(){return this.relations;}
+
+    public void setIndexSDRS(int idx) {this.index =idx;}
+    public int getindexSDRS() {return this.index;}
 
     public ArraySet<DRTElement> getRelatedConstituents(){
         ArrayList<String> visitedConst = new ArrayList<>();

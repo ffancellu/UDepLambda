@@ -1,15 +1,12 @@
 package deplambda.DRT;
 
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import joptsimple.internal.Strings;
+import edu.stanford.nlp.util.Pair;
 
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Created by ffancellu on 02/04/2017.
@@ -144,7 +141,11 @@ public class DRTSegmenter {
                 }
                 root = rootRel;
             } else {
-                root = constituents.get(0);
+                if (constituents.get(0).getChildren().size()==1){
+                    root = constituents.get(0).getChildren().get(0);
+                } else {
+                    root = constituents.get(0);
+                }
             }
         } else {
             if (constituents.size()/relations.size()!=2){
@@ -162,30 +163,34 @@ public class DRTSegmenter {
         return root;
     }
 
-    public static void fixInternalRelations(HashMap<Integer,ArrayList<Constituent>> constituentMap) {
-        for (ArrayList<Constituent> cList : constituentMap.values()) {
-            List<String> consts2string = cList.stream().map(x -> x.getLabel()).collect(Collectors.toList());
-            for (Constituent c: cList) {
-                c.readjustRelations(consts2string);
-            }
-        }
+    public static void fixInternalRelations(DRTElement c) {
+//                gather the constituent in this yield
+        List<Integer> consts2string = c.gatherAllConstituents(new ArrayList<>()).stream().map(x -> Integer.parseInt(x.getLabel().substring(1))).collect(Collectors.toList());
+        Collections.sort(consts2string);
+////            collect pairs of contiguous constituent indeces
+        List<Pair> constTuples = IntStream.range(1, consts2string.size())
+                .mapToObj(i -> new Pair(consts2string.get(i-1), consts2string.get(i)))
+                .collect(Collectors.toList());
+        c.readjustRelations(constTuples);
 
     }
 
-    public static ArrayList<JsonObject> extractSentences(SortedMap<String,TaggedToken> tokenMap,
+    public static ArrayList<Pair> extractSentences(SortedMap<String,TaggedToken> tokenMap,
                                                    ArrayList<Constituent> constituents,
                                                    ArrayList<Relation> relations){
-        ArrayList<JsonObject> jsonObjs = new ArrayList<>();
+        ArrayList<Pair> sentsAndDRS = new ArrayList<>();
         if (!constituents.isEmpty()) {
             HashMap<Integer, ArrayList<TaggedToken>> sentences = indexSentences(tokenMap);
             HashMap<Integer, ArrayList<Constituent>> constituentsMap = indexConstituents(constituents);
             HashMap<Integer, ArrayList<Relation>> relationMap = indexRelations(relations, constituentsMap);
             //        if there exists some constituents that could not be assigned, assign them to the constituent in the closest relationship with
             assignUndecidedConstituents(constituentsMap, relations);
-            //            create relation children of internal SDRS
-            fixInternalRelations(constituentsMap);
             for (int i : constituentsMap.keySet()) {
                 ArrayList<TaggedToken> sentence = sentences.get(i);
+//                make sure there is a sentence to start with
+                if (sentence==null){
+                    continue;
+                }
                 /**
                  * if B is dependant on A, we disregard B as an independent constituent.
                  */
@@ -194,17 +199,16 @@ public class DRTSegmenter {
                         filterRelations(relationMap.get(i), sentenceConstituents) :
                         new ArrayList<>();
                 DRTElement root = assignRootElement(sentenceConstituents, rootRelations);
-
-                JsonObject sentenceObject = new JsonObject();
-                sentenceObject.add("sentence",new Gson().toJsonTree(
-                       sentence.stream().map(x-> x.toString()).collect(Collectors.joining(" "))
-                ));
-//                gather the constituents and put them as triplets in a list
-                System.out.println(root.gatherGraphTriplets(new ArrayList()));
-                jsonObjs.add(sentenceObject);
+                //            create relation children of internal SDRS
+                fixInternalRelations(root);
+                root.removeUnaryConstituents();
+                root.removeConditionSDRS();
+                root.assignIndicesDRSs(new int[] {0}, new ArrayList<>());
+                sentsAndDRS.add(Pair.makePair(sentence,root));
             }
+
         }
-        return jsonObjs;
+        return sentsAndDRS;
     }
 
 
