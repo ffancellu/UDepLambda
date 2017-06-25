@@ -1,21 +1,14 @@
 package deplambda.DRTLambda;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.hp.hpl.jena.sparql.function.library.strjoin;
+import deplambda.DRGLambda.GraphProcessor;
 import deplambda.DRT.DRTElement;
 import deplambda.DRT.XDRS;
-import deplambda.others.NlpPipeline;
 import deplambda.others.SentenceKeys;
 import deplambda.util.DependencyTree;
-import deplambda.util.MongoDumper;
 import edu.cornell.cs.nlp.spf.mr.lambda.FlexibleTypeComparator;
 import edu.cornell.cs.nlp.spf.mr.lambda.LogicLanguageServices;
 import edu.cornell.cs.nlp.spf.mr.language.type.MutableTypeRepository;
-import edu.stanford.nlp.parser.nndep.DependencyParser;
-import edu.stanford.nlp.util.ArrayUtils;
 import edu.stanford.nlp.util.Pair;
 import edu.stanford.nlp.util.Triple;
 
@@ -78,7 +71,8 @@ public class DRTPipeline {
         options.put("pos.model", "lib_data/ud-models-v2.0/en/pos-tagger/utb-caseless-en-bidirectional-glove-distsim-lower.tagger");
         options.put("depparse.model", "lib_data/ud-models-v2.0/en/neural-parser/en-lowercase-glove50.lower.alluni.nndep.model.txt.gz");
         options.put("folder.chunks", "10");
-        options.put("debug", "false");
+        options.put("debug", "true_02_0510");
+//        options.put("debug", "false");
 
 
         Annotator annotator = new Annotator(options);
@@ -90,11 +84,15 @@ public class DRTPipeline {
             File testDir = Paths.get(rootDir.toString(), "p" + debugArgs[1], "d" + debugArgs[2]).toFile();
             ArrayList<Triple<String, String, XDRS>> roots = XMLExtractor.processOne(testDir);
             ArrayList<Triple<String, String, ArrayList<Pair>>> processedRoots = DRTProcessor.processRoots(roots);
+
             for (Triple triplet : processedRoots) {
                 for (Pair pair : (ArrayList<Pair>) triplet.third()) {
                     ((DRTElement) pair.second()).printChildren(0);
                 }
+                System.out.println();
             }
+            GraphProcessor.createGraphs(processedRoots);
+
         } else {
             int x = Integer.parseInt(options.get("folder.chunks"));
             List<String> subFolders = Arrays.asList(rootDir.list());
@@ -117,10 +115,15 @@ public class DRTPipeline {
                         folderChunk);
                 System.out.println("Segmenting the XDRS into sentences...");
                 ArrayList<Triple<String, String, ArrayList<Pair>>> processedRoots = DRTProcessor.processRoots(roots);
+
+                System.out.println("Transforming DRTElements into Graph objects...");
+                GraphProcessor.createGraphs(processedRoots);
+
                 System.out.println("Jsonifying objects...");
                 JsonArray DRTObjs = DRTProcessor.jsonifySentsAndRoots(annotator, processedRoots);
-                System.out.println("Dump into mongoDB...");
-                MongoDumper.dumpJsonArray(DRTObjs, "dep2GMB", "data");
+
+//                System.out.println("Dump into mongoDB...");
+//                MongoDumper.dumpJsonArray(DRTObjs, "dep2GMB", "data");
             }
         }
     }

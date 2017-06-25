@@ -1,26 +1,12 @@
 package deplambda.DRTLambda;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import deplambda.DRT.*;
-import deplambda.others.SentenceKeys;
-import deplambda.parser.TreeTransformer;
-import deplambda.util.DependencyTree;
-import deplambda.util.Sentence;
-import deplambda.util.TransformationRuleGroups;
-import edu.cornell.cs.nlp.spf.mr.lambda.FlexibleTypeComparator;
-import edu.cornell.cs.nlp.spf.mr.lambda.LogicLanguageServices;
-import edu.cornell.cs.nlp.spf.mr.language.type.MutableTypeRepository;
 import edu.stanford.nlp.util.Pair;
 import edu.stanford.nlp.util.Triple;
-import org.apache.log4j.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.stream.Collectors;
 
 /**
@@ -28,14 +14,19 @@ import java.util.stream.Collectors;
  */
 public class DRTProcessor {
 
+    /**
+     * Returns all segmented DRTs for a file along with the sentence as a list of tokens
+     * @return ArrayList<Triple<String,String,ArrayList<Pair>>>
+     *     where one Triple corresponds to a file <par_name,doc_name,list<list<taggedtokens>,drt>>
+     */
     public static ArrayList<Triple<String,String,ArrayList<Pair>>> processRoots(
             ArrayList<Triple<String,String,XDRS>> roots) {
         ArrayList<Triple<String,String,ArrayList<Pair>>> allSentsAndDRS = new ArrayList<>();
         for (Triple triplet : roots) {
             XDRS root = (XDRS) triplet.third();
             ArrayList<Pair> sentsAndDRS = DRTSegmenter.extractSentences(root.getTaggedTokens(),
-                    root.gatherAllConstituents(new ArrayList<Constituent>()),
-                    root.gatherAllRelations(new ArrayList<Relation>()));
+                    root.gatherAllConstituents(new ArrayList<>()),
+                    root.gatherAllRelations(new ArrayList<>()));
             allSentsAndDRS.add(Triple.makeTriple((String)triplet.first(),
                                                 (String) triplet.second(),
                                                 sentsAndDRS));
@@ -43,6 +34,7 @@ public class DRTProcessor {
         return allSentsAndDRS;
 
     }
+
 
     public static JsonArray jsonifySentsAndRoots(Annotator annotator,
                                                 ArrayList<Triple<String,String,ArrayList<Pair>>> allSentsAndDRS){
@@ -104,6 +96,8 @@ public class DRTProcessor {
             String token = word.get("word").getAsString();
             String isNer = word.get("ner").getAsString();
             String dep = word.get("dep").getAsString();
+            String lemma = word.get("lemma").getAsString();
+            String pos = word.get("pos").getAsString();
             int idx = word.get("index").getAsInt();
 
 
@@ -111,6 +105,8 @@ public class DRTProcessor {
             annotationWord.addProperty("isNer",isNer);
             annotationWord.addProperty("index",idxAnn);
             annotationWord.addProperty("indexSentence",idx);
+            annotationWord.addProperty("lemma",lemma);
+            annotationWord.addProperty("pos",pos);
             annotationWord.addProperty("type","word");
 
             idxAnn++;

@@ -72,6 +72,11 @@ public class DRS extends DRTElement{
     }
 
     @Override
+    public String toString(){
+        return String.format("K%d",this.getIndexDRS());
+    }
+
+    @Override
     protected Object clone() throws CloneNotSupportedException {
         return (DRS) super.clone();
     }

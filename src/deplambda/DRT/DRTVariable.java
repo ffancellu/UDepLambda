@@ -14,6 +14,7 @@ public class DRTVariable extends DRTElement{
     private LogicalExpression term;
     private String type;
     private Integer idx;
+    private String alignedTaggedToken = new String();
 
     public DRTVariable(){}
 
@@ -61,6 +62,7 @@ public class DRTVariable extends DRTElement{
 //        get all potential indices
         NodeList indexNodes = ((Element)node).getElementsByTagName("index");
         for (int i=0;i<indexNodes.getLength();i++){
+            this.alignedTaggedToken = indexNodes.item(i).getTextContent();
             this.addToken(indexNodes.item(i).getTextContent());
         }
 

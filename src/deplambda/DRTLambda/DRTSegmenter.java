@@ -1,6 +1,10 @@
-package deplambda.DRT;
+package deplambda.DRTLambda;
 
 import com.google.gson.Gson;
+import deplambda.DRT.Constituent;
+import deplambda.DRT.DRTElement;
+import deplambda.DRT.Relation;
+import deplambda.DRT.TaggedToken;
 import edu.stanford.nlp.util.Pair;
 
 
@@ -55,7 +59,7 @@ public class DRTSegmenter {
         for (Relation rel: relations) {
             String arg1 = rel.getChildTags().get(0);
             String arg2 = rel.getChildTags().get(1);
-            if (!rel.name.equals("continuation")) {
+            if (!rel.getName().equals("continuation")) {
                 if (const2sent.get(arg1).equals(const2sent.get(arg2))) {
                     for (int s : const2sent.get(arg1)) {
                         relation2sents.putIfAbsent(s, new ArrayList<>());
@@ -127,7 +131,7 @@ public class DRTSegmenter {
     }
 
     public static DRTElement assignRootElement(ArrayList<Constituent> constituents,
-                                         ArrayList<Relation> relations){
+                                               ArrayList<Relation> relations){
         DRTElement root = new DRTElement();
         if (relations.isEmpty()){
             if (constituents.size()>1){

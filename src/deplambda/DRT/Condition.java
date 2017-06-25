@@ -4,7 +4,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
@@ -18,6 +17,8 @@ public class Condition extends DRTElement{
 //    for extra information e.g. class and symbols of NEs
     private Map<String,String> extra;
     private String name;
+    private String type;
+    private String alignedTaggedToken;
 
     public Condition(String name, Map<String, DRTVariable> yield, Map<String,String> extra){
         this.name = name;
@@ -25,17 +26,21 @@ public class Condition extends DRTElement{
         if (extra==null) {
             this.extra = new HashMap<String, String>();
         } else {this.extra = extra;}
+        this.type="";
     }
 
     public Condition(){
         name = new String();
         yield = new HashMap<>();
         extra = new HashMap<>();
+        type = new String();
+        alignedTaggedToken = new String();
+
     }
 
     public void setName(String name){this.name = name;}
     public String getName(){return this.name;}
-
+    public String getType(){return this.type;}
     public Map<String,DRTVariable> getVarYield(){return this.yield;}
     public String prettyVarYield(){
         StringBuilder sb = new StringBuilder();
@@ -45,6 +50,7 @@ public class Condition extends DRTElement{
         return sb.toString().trim();
     }
     public Map<String,String> getExtra(){return this.extra;}
+    public String getAlignedTaggedToken(){return this.alignedTaggedToken;}
 
     private static DRTVariable fetchVariable(String entityName, Map<String,DRTVariable> vars){
         DRTVariable resVar = null;
@@ -64,21 +70,27 @@ public class Condition extends DRTElement{
         switch(condNode.getNodeName()){
             case "named":
                 processNamed(condNode, parentVars);
+                this.type = "unaryPred";
                 break;
             case "timex":
                 processTimex(condNode,parentVars);
+                this.type = "unaryPred";
                 break;
             case "pred":
                 processPred(condNode,parentVars);
+                this.type = "unaryPred";
                 break;
             case "rel":
                 processRel(condNode,parentVars);
+                this.type = "binaryPred";
                 break;
             case "eq":
                 processEq(condNode,parentVars);
+                this.type = "binaryPred";
                 break;
             case "card":
                 processCard(condNode,parentVars);
+                this.type = "unaryPred";
                 break;
             case "whq":
             case "not":
@@ -102,6 +114,7 @@ public class Condition extends DRTElement{
             if (condChildren.item(j).getNodeName().equals("indexlist")){
                 NodeList indices = ((Element)condChildren.item(j)).getElementsByTagName("index");
                 for (int i=0;i<indices.getLength();i++){
+                    this.alignedTaggedToken = indices.item(i).getTextContent();
                     this.addToken(indices.item(i).getTextContent());
                 }
             }
@@ -114,7 +127,7 @@ public class Condition extends DRTElement{
         name = node.getNodeName();
         String entity = node.getAttributes().getNamedItem("arg").getNodeValue();
         DRTVariable matchVar = Condition.fetchVariable(entity,vars);
-        yield.put("arg0",matchVar);
+        yield.put("arg0" , matchVar);
         extra.put("symbol", node.getAttributes().getNamedItem("symbol").getNodeValue());
         extra.put("class", node.getAttributes().getNamedItem("class").getNodeValue());
     }
@@ -181,6 +194,11 @@ public class Condition extends DRTElement{
     private void processNested(Node node, Map<String,DRTVariable> vars) {
         name = node.getNodeName();
         NodeList condChildren = node.getChildNodes();
+        if (condChildren.getLength()==1){
+            this.type = "unaryOperator";
+        } else if (condChildren.getLength()==2){
+            this.type = "binaryOperator";
+        }
         for (int i = 0; i< condChildren.getLength();i++){
             Node childNode = condChildren.item(i);
             if (childNode.getNodeName().equals("drs")){
@@ -198,7 +216,7 @@ public class Condition extends DRTElement{
 
     @Override
     public String toString(){
-        return name + " " + yield.toString();
+        return name + " " + yield.toString() + " " + alignedTaggedToken;
     }
 
 }

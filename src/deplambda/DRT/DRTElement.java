@@ -111,11 +111,13 @@ public class DRTElement {
         return indicesYield;
     }
 
+    /**
+     * Print a DRT graph in depth-first order
+     * @args: int
+     * @params: depth number of tabs used for indentation
+     */
     public void printChildren(int depth){
-        System.out.println(Strings.repeat('\t',depth) + this.toString() + " " + this.getChildren());//+ " " + (this.parent!=null? this.parent.toString():"null"));
-        if (this instanceof DRS){
-            System.out.print(" " + ((DRS) this).getIndexDRS());
-        }
+        System.out.println(Strings.repeat('\t',depth) + this.toString());
         for(DRTElement child:children){
             child.printChildren(depth+1);
         }

@@ -14,9 +14,10 @@ import java.util.Map;
  */
 public class Relation extends DRTElement{
 
-    String name;
-    HashMap<String,DRTElement> args;
-    ArrayList<String> childTags = new ArrayList<>();
+    private String name;
+    private HashMap<String,DRTElement> args;
+    private ArrayList<String> childTags = new ArrayList<>();
+    private String alignedTaggedToken = new String();
 
     public Relation(){
         this.name = new String();
@@ -35,6 +36,8 @@ public class Relation extends DRTElement{
     public HashMap<String,DRTElement> getArgs(){ return this.args;}
     public ArrayList<String> getChildTags(){return this.childTags;}
 
+    public String getAlignedTaggedToken(){return this.alignedTaggedToken;}
+
 
     public void addChildrenConstituents(){
         this.args.keySet().forEach(key -> this.setParentChildRel(this.args.get(key)));
@@ -47,6 +50,7 @@ public class Relation extends DRTElement{
         childTags.add(node.getAttributes().getNamedItem("arg2").getNodeValue());
         NodeList indices = ((Element) node).getElementsByTagName("index");
         for (int i =0;i<indices.getLength();i++){
+            this.alignedTaggedToken = indices.item(i).getTextContent();
             this.addToken(indices.item(i).getTextContent());
         }
     }
